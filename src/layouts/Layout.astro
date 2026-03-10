@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+import Header from '../components/layout/Header';
+import Cart from '../components/layout/Cart';
+import Login from '../components/layout/Login';
+import Footer from '../components/layout/Footer';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/assets/icons/icon-profile.png" />
+    
+    <!--=============== BOXICONS ===============-->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+
+    <!-- Google Fonts (Roboto) if not using system font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header client:load />
+    
+    <Cart client:load />
+    
+    <Login client:load />
+    
+    <main class="pt-[4.5rem]">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <!--=============== SCROLL UP ===============-->
+    <a href="#" class="fixed right-4 -bottom-[30%] bg-[var(--first-color)] text-white p-1 rounded-md text-xl z-[var(--z-tooltip)] opacity-80 transition-all duration-400 hover:bg-[#ff9900]" id="scroll-up">
+      <i class="bx bx-up-arrow-alt"></i>
+    </a>
+  </body>
+</html>

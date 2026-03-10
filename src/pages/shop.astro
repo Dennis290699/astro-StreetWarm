@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ShopContent from '../components/shop/ShopContent';
+---
+
+<Layout title="Shop - B4LB3R1TH">
+  <section className="py-28 max-w-[968px] mx-auto px-6">
+    <h2 className="text-[var(--h1-font-size)] text-center text-[var(--title-color)] font-medium mb-12">Shop Page</h2>
+    <h3 className="text-[var(--h3-font-size)] text-center text-[var(--title-color)] font-medium mb-12">
+      Home <span className="text-[var(--first-color)]">Shop</span>
+    </h3>
+
+    <ShopContent client:load />
+  </section>
+</Layout>
