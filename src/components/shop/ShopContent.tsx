@@ -1,13 +1,5 @@
 import { useAppStore } from '../../store/useAppStore';
-
-const SHOP_ITEMS = [
-  { id: 's1', tag: 'New', name: 'Cartoon Jacked', category: 'Accessory', price: 14.99, discount: 29.99, image: '/assets/productos/product-1.png' },
-  { id: 's2', tag: 'Sale', name: 'Clothing Hat Coat', category: 'Accessory', price: 11.99, discount: 21.99, image: '/assets/productos/product-2.png' },
-  { id: 's3', tag: 'Sale', name: 'Fur Jacked', category: 'Accessory', price: 5.99, discount: 12.99, image: '/assets/productos/product-3.png' },
-  { id: 's4', tag: 'New', name: 'Fleece Jacked', category: 'Accessory', price: 7.99, discount: 14.99, image: '/assets/productos/product-4.png' },
-  { id: 's5', tag: 'New', name: 'Windbreaker Jacked', category: 'Accessory', price: 7.99, discount: 14.99, image: '/assets/productos/product-5.png' },
-  { id: 's6', tag: 'Sale', name: 'Adidas tracksuit', category: 'Accessory', price: 14.99, discount: 29.99, image: '/assets/productos/product-6.png' },
-];
+import { PRODUCTS } from '../../data/products';
 
 export default function ShopContent() {
   const addToCart = useAppStore((state) => state.addToCart);
@@ -69,7 +61,7 @@ export default function ShopContent() {
 
       {/* ITEMS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {SHOP_ITEMS.map((product) => (
+        {PRODUCTS.map((product) => (
           <div key={product.id} className="relative bg-[var(--container-color)] pt-8 pb-8 rounded-2xl text-center overflow-hidden group transition-all duration-300 hover:-translate-y-2 shadow-[0_4px_16px_hsla(0,0%,15%,0.05)]">
             <div className="absolute top-[8%] left-[8%] bg-[var(--first-color)] text-white text-[var(--small-font-size)] px-2 py-1 rounded">
               {product.tag}
@@ -88,6 +80,7 @@ export default function ShopContent() {
             <button 
               onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, quantity: 1, image: product.image })}
               className="absolute bottom-0 -right-12 inline-flex p-2 bg-[var(--first-color)] text-white rounded-[.25rem_.25rem_.75rem_.25rem] transition-all duration-300 group-hover:right-0 hover:bg-[#ff9900]"
+              title="Add to Cart"
             >
               <i className="bx bx-cart-alt text-xl"></i>
             </button>
