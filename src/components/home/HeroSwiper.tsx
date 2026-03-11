@@ -1,50 +1,63 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { Pagination, EffectFade, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 
 export default function HeroSwiper() {
   return (
-    <section className="max-w-[968px] mx-auto px-6">
+    <section className="max-w-7xl mx-auto px-6 2xl:px-0">
       <Swiper
-        modules={[Pagination]}
-        pagination={{ clickable: true }}
-        spaceBetween={30}
+        modules={[Pagination, EffectFade, Autoplay]}
+        effect="fade"
+        pagination={{ clickable: true, dynamicBullets: true }}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        spaceBetween={0}
         loop={true}
         className="home-swiper"
       >
         {/* SLIDE 1 */}
         <SwiperSlide>
-          <div className="pt-36 pb-8 md:grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative pt-8 flex justify-center order-1 md:order-2">
-              <img src="/assets/productos/slide-2.png" alt="" className="h-[420px] -translate-y-12" />
+          <div className="pt-24 pb-12 lg:pt-32 lg:pb-20 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[85vh]">
+            <div className="relative flex justify-center order-1 lg:order-2 w-full">
+              <div className="absolute inset-0 bg-gradient-to-tr from-gray-100 to-transparent rounded-full blur-3xl opacity-50 -z-10 w-[70%] h-[70%] m-auto"></div>
+              <img src="/assets/productos/slide-2.png" alt="The Cardigan" className="h-[350px] sm:h-[450px] lg:h-[650px] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700 ease-out" />
               
-              <div className="w-2 h-2 bg-[var(--title-color)] rounded-full absolute bottom-[15%] left-[45%] 
-                after:content-[''] after:absolute after:w-[1px] after:h-[75px] after:bg-[var(--title-color)] after:top-0 after:right-[45%]"
-              ></div>
-
-              <div className="absolute bottom-0 right-[58%] text-right">
-                <h4 className="block text-[var(--small-font-size)] text-[var(--title-color)] font-medium">The Cardigan</h4>
-                <span className="block text-[var(--small-font-size)] text-[var(--text-color)]">Woolen</span>
+              <div className="hidden md:flex flex-col absolute bottom-[15%] left-[10%] text-left bg-white/70 backdrop-blur-lg p-5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50 transform -rotate-2 hover:rotate-0 transition-all duration-300">
+                <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--first-color)] mb-1">
+                  <span className="w-2 h-2 rounded-full bg-[var(--first-color)] animate-pulse"></span>
+                  Trending
+                </span>
+                <h4 className="text-xl text-[var(--title-color)] font-extrabold leading-tight">The Cardigan</h4>
+                <span className="text-sm text-gray-500 font-medium">Premium Woolen</span>
               </div>
             </div>
 
-            <div className="order-2 md:order-1 mt-8 md:mt-0">
-              <h3 className="text-[var(--h3-font-size)] uppercase mb-4 text-[var(--title-color)] font-medium">#1 TRENDING ITEM</h3>
-              <h1 className="text-[var(--biggest-font-size)] font-bold leading-[109%] mb-6 text-[var(--title-color)]">
-                ORIGINAL <br />IS NEVER <br />FINISHED!!
+            <div className="order-2 lg:order-1 flex flex-col justify-center py-8">
+              <span className="inline-block py-1 px-3 rounded-full bg-gray-100 text-[var(--title-color)] text-xs md:text-sm font-bold tracking-widest uppercase mb-6 w-fit border border-gray-200 shadow-sm">
+                #1 Top Trending
+              </span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] font-black leading-[1.05] tracking-tight mb-8 text-[var(--title-color)]">
+                ORIGINAL <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--title-color)] to-[var(--first-color)]">
+                  IS NEVER
+                </span> 
+                <br/>
+                FINISHED!!
               </h1>
-              <p className="mb-10 lg:pr-8 text-[var(--text-color)]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae accusantium ut, vel necessitatibus amet corrupti exercitationem aut quasi autem sit dicta aliquam provident in consequuntur officia facilis debitis minima quidem!
+              <p className="mb-10 text-base md:text-lg text-gray-500 max-w-lg leading-relaxed font-medium">
+                Explora la nueva colección que está rompiendo esquemas. Diseños exclusivos pensados para destacar tu estilo en cualquier ocasión.
               </p>
 
-              <div className="flex justify-between md:justify-start gap-8 items-center">
-                <a href="/details" className="inline-block bg-[var(--first-color)] text-white px-7 py-4 rounded-lg font-medium transition-colors hover:bg-orange-500">
-                  Buy Now
+              <div className="flex flex-wrap items-center gap-6">
+                <a href="/shop" className="inline-flex items-center justify-center bg-[var(--title-color)] text-white px-8 py-4 rounded-full font-bold transition-all duration-300 hover:bg-[var(--first-color)] hover:shadow-lg hover:shadow-[var(--first-color)]/40 hover:-translate-y-1">
+                  Shop Now
                 </a>
-                <a href="/details" className="inline-flex items-center gap-2 text-[var(--title-color)] font-medium group transition-colors hover:text-[var(--first-color)]">
-                  View Details
-                  <i className="bx bx-right-arrow-alt text-xl transition-transform group-hover:translate-x-1"></i>
+                <a href="/shop" className="inline-flex items-center gap-3 text-[var(--title-color)] font-semibold group transition-all hover:text-[var(--first-color)]">
+                  View Collection
+                  <span className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-[var(--first-color)]/10 transition-colors">
+                    <i className="bx bx-right-arrow-alt text-2xl transition-transform duration-300 group-hover:translate-x-1"></i>
+                  </span>
                 </a>
               </div>
             </div>
@@ -53,36 +66,46 @@ export default function HeroSwiper() {
 
         {/* SLIDE 2 */}
         <SwiperSlide>
-          <div className="pt-36 pb-8 md:grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative pt-8 flex justify-center order-1 md:order-2">
-              <img src="/assets/productos/slide-3.png" alt="" className="h-[420px] -translate-y-12" />
+          <div className="pt-24 pb-12 lg:pt-32 lg:pb-20 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[85vh]">
+            <div className="relative flex justify-center order-1 lg:order-2 w-full">
+              <div className="absolute inset-0 bg-gradient-to-tr from-gray-100 to-transparent rounded-full blur-3xl opacity-50 -z-10 w-[70%] h-[70%] m-auto"></div>
+              <img src="/assets/productos/slide-3.png" alt="Jqeezy Ski Suit" className="h-[350px] sm:h-[450px] lg:h-[650px] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700 ease-out" />
               
-              <div className="w-2 h-2 bg-[var(--title-color)] rounded-full absolute bottom-[15%] left-[45%] 
-                after:content-[''] after:absolute after:w-[1px] after:h-[75px] after:bg-[var(--title-color)] after:top-0 after:right-[45%]"
-              ></div>
-
-              <div className="absolute bottom-0 right-[58%] text-right">
-                <h4 className="block text-[var(--small-font-size)] text-[var(--title-color)] font-medium">Jqeezy</h4>
-                <span className="block text-[var(--small-font-size)] text-[var(--text-color)]">Ski Suit</span>
+              <div className="hidden md:flex flex-col absolute bottom-[15%] right-[10%] text-left bg-white/70 backdrop-blur-lg p-5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50 transform rotate-2 hover:rotate-0 transition-all duration-300">
+                <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--first-color)] mb-1">
+                  <span className="w-2 h-2 rounded-full bg-[var(--first-color)] animate-pulse"></span>
+                  Best Duo
+                </span>
+                <h4 className="text-xl text-[var(--title-color)] font-extrabold leading-tight">Jqeezy</h4>
+                <span className="text-sm text-gray-500 font-medium">Urban Ski Suit</span>
               </div>
             </div>
 
-            <div className="order-2 md:order-1 mt-8 md:mt-0">
-              <h3 className="text-[var(--h3-font-size)] uppercase mb-4 text-[var(--title-color)] font-medium">#2 top best duo</h3>
-              <h1 className="text-[var(--biggest-font-size)] font-bold leading-[109%] mb-6 text-[var(--title-color)]">
-                FALL <br />WINTER <br />2024
+            <div className="order-2 lg:order-1 flex flex-col justify-center py-8">
+              <span className="inline-block py-1 px-3 rounded-full bg-gray-100 text-[var(--title-color)] text-xs md:text-sm font-bold tracking-widest uppercase mb-6 w-fit border border-gray-200 shadow-sm">
+                #2 Top Pick
+              </span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] font-black leading-[1.05] tracking-tight mb-8 text-[var(--title-color)]">
+                FALL <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--title-color)] to-[var(--first-color)]">
+                  WINTER
+                </span> 
+                <br/>
+                2024
               </h1>
-              <p className="mb-10 lg:pr-8 text-[var(--text-color)]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae accusantium ut, vel necessitatibus amet corrupti exercitationem aut quasi autem sit dicta aliquam provident in consequuntur officia facilis debitis minima quidem!
+              <p className="mb-10 text-base md:text-lg text-gray-500 max-w-lg leading-relaxed font-medium">
+                Prepárate para la temporada más fría con estilo ardiente. Materiales de alta calidad y diseño funcional.
               </p>
 
-              <div className="flex justify-between md:justify-start gap-8 items-center">
-                <a href="/details" className="inline-block bg-[var(--first-color)] text-white px-7 py-4 rounded-lg font-medium transition-colors hover:bg-orange-500">
-                  Buy Now
+              <div className="flex flex-wrap items-center gap-6">
+                <a href="/shop" className="inline-flex items-center justify-center bg-[var(--title-color)] text-white px-8 py-4 rounded-full font-bold transition-all duration-300 hover:bg-[var(--first-color)] hover:shadow-lg hover:shadow-[var(--first-color)]/40 hover:-translate-y-1">
+                  Shop Now
                 </a>
-                <a href="/details" className="inline-flex items-center gap-2 text-[var(--title-color)] font-medium group transition-colors hover:text-[var(--first-color)]">
-                  View Details
-                  <i className="bx bx-right-arrow-alt text-xl transition-transform group-hover:translate-x-1"></i>
+                <a href="/shop" className="inline-flex items-center gap-3 text-[var(--title-color)] font-semibold group transition-all hover:text-[var(--first-color)]">
+                  View Collection
+                  <span className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-[var(--first-color)]/10 transition-colors">
+                    <i className="bx bx-right-arrow-alt text-2xl transition-transform duration-300 group-hover:translate-x-1"></i>
+                  </span>
                 </a>
               </div>
             </div>
@@ -91,36 +114,46 @@ export default function HeroSwiper() {
 
         {/* SLIDE 3 */}
         <SwiperSlide>
-          <div className="pt-36 pb-8 md:grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative pt-8 flex justify-center order-1 md:order-2">
-              <img src="/assets/productos/slide-1.png" alt="" className="h-[420px] -translate-y-12" />
+          <div className="pt-24 pb-12 lg:pt-32 lg:pb-20 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[85vh]">
+            <div className="relative flex justify-center order-1 lg:order-2 w-full">
+              <div className="absolute inset-0 bg-gradient-to-tr from-gray-100 to-transparent rounded-full blur-3xl opacity-50 -z-10 w-[70%] h-[70%] m-auto"></div>
+              <img src="/assets/productos/slide-1.png" alt="Jurry Zipper" className="h-[350px] sm:h-[450px] lg:h-[650px] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700 ease-out" />
               
-              <div className="w-2 h-2 bg-[var(--title-color)] rounded-full absolute bottom-[15%] left-[45%] 
-                after:content-[''] after:absolute after:w-[1px] after:h-[75px] after:bg-[var(--title-color)] after:top-0 after:right-[45%]"
-              ></div>
-
-              <div className="absolute bottom-0 right-[58%] text-right">
-                <h4 className="block text-[var(--small-font-size)] text-[var(--title-color)] font-medium">Jurry</h4>
-                <span className="block text-[var(--small-font-size)] text-[var(--text-color)]">Zipper</span>
+              <div className="hidden md:flex flex-col absolute bottom-[15%] left-[10%] text-left bg-white/70 backdrop-blur-lg p-5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50 transform -rotate-2 hover:rotate-0 transition-all duration-300">
+                <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-red-500 mb-1">
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                  Hot Deal
+                </span>
+                <h4 className="text-xl text-[var(--title-color)] font-extrabold leading-tight">Jurry</h4>
+                <span className="text-sm text-gray-500 font-medium">Classic Zipper</span>
               </div>
             </div>
 
-            <div className="order-2 md:order-1 mt-8 md:mt-0">
-              <h3 className="text-[var(--h3-font-size)] uppercase mb-4 text-[var(--title-color)] font-medium">#3 TRENDING ITEM</h3>
-              <h1 className="text-[var(--biggest-font-size)] font-bold leading-[109%] mb-6 text-[var(--title-color)]">
-                SALE 20% <br />OFF ON <br />EVERYTHING
+            <div className="order-2 lg:order-1 flex flex-col justify-center py-8">
+              <span className="inline-block py-1 px-3 rounded-full bg-red-50 text-red-500 border border-red-200 text-xs md:text-sm font-bold tracking-widest uppercase mb-6 w-fit shadow-sm">
+                #3 Limited Time
+              </span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] font-black leading-[1.05] tracking-tight mb-8 text-[var(--title-color)]">
+                SALE 20% <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-400">
+                  OFF ON
+                </span> 
+                <br/>
+                EVERYTHING
               </h1>
-              <p className="mb-10 lg:pr-8 text-[var(--text-color)]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae accusantium ut, vel necessitatibus amet corrupti exercitationem aut quasi autem sit dicta aliquam provident in consequuntur officia facilis debitis minima quidem!
+              <p className="mb-10 text-base md:text-lg text-gray-500 max-w-lg leading-relaxed font-medium">
+                Descuentos increíbles en toda la tienda. Renueva tu guardarropa hoy sin vaciar tu billetera.
               </p>
 
-              <div className="flex justify-between md:justify-start gap-8 items-center">
-                <a href="/details" className="inline-block bg-[var(--first-color)] text-white px-7 py-4 rounded-lg font-medium transition-colors hover:bg-orange-500">
-                  Buy Now
+              <div className="flex flex-wrap items-center gap-6">
+                <a href="/shop" className="inline-flex items-center justify-center bg-red-500 text-white px-8 py-4 rounded-full font-bold transition-all duration-300 hover:bg-red-600 hover:shadow-lg hover:shadow-red-500/40 hover:-translate-y-1">
+                  Claim Discount
                 </a>
-                <a href="/details" className="inline-flex items-center gap-2 text-[var(--title-color)] font-medium group transition-colors hover:text-[var(--first-color)]">
-                  View Details
-                  <i className="bx bx-right-arrow-alt text-xl transition-transform group-hover:translate-x-1"></i>
+                <a href="/shop" className="inline-flex items-center gap-3 text-[var(--title-color)] font-semibold group transition-all hover:text-red-500">
+                  Explore Deals
+                  <span className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center group-hover:bg-red-100 transition-colors">
+                    <i className="bx bx-right-arrow-alt text-2xl transition-transform duration-300 group-hover:translate-x-1"></i>
+                  </span>
                 </a>
               </div>
             </div>
@@ -129,11 +162,10 @@ export default function HeroSwiper() {
 
       </Swiper>
 
-      {/* Note: Swiper custom pagination styles should be added to global.css to match exactly */}
       <style dangerouslySetInnerHTML={{__html: `
-        .home-swiper .swiper-pagination { margin-top: 2.5rem; position: relative; }
-        .home-swiper .swiper-pagination-bullet { width: 5px; height: 5px; background: var(--title-color); opacity: 1; transition: 0.3s; }
-        .home-swiper .swiper-pagination-bullet-active { width: 1.5rem; border-radius: 0.5rem; }
+        .home-swiper .swiper-pagination { margin-top: 1rem; position: relative; }
+        .home-swiper .swiper-pagination-bullet { width: 8px; height: 8px; background: #e5e7eb; opacity: 1; transition: all 0.3s ease; }
+        .home-swiper .swiper-pagination-bullet-active { width: 2rem; border-radius: 1rem; background: var(--title-color); }
       `}} />
     </section>
   );
