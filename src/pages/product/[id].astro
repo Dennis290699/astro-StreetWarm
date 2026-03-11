@@ -16,7 +16,7 @@ const { product } = Astro.props;
 ---
 
 <Layout title={`${product.name} | StreetWarm`}>
-  <main class="main bg-white min-h-[70vh] pt-16 pb-12">
+  <main class="main bg-white min-h-[70vh] pt-28 pb-12">
     <!-- Componente React Isla Hidratado con Cliente -->
     <ProductDetails client:load product={product} />
   </main>
