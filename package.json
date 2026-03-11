@@ -17,6 +17,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "astro": "^6.0.2",
+    "framer-motion": "^12.35.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "swiper": "^12.1.2",

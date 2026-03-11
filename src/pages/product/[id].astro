@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductDetails from '../../components/shop/ProductDetails.tsx';
+import { PRODUCTS } from '../../data/products';
+
+// Configurar rutas dinámicas en Astro a partir del array de productos
+export function getStaticPaths() {
+  return PRODUCTS.map((product) => ({
+    params: { id: product.id },
+    props: { product },
+  }));
+}
+
+const { id } = Astro.params;
+const { product } = Astro.props;
+---
+
+<Layout title={`${product.name} | StreetWarm`}>
+  <main class="main bg-white min-h-[50vh] pt-24">
+    <!-- Componente React Isla Hidratado con Cliente -->
+    <ProductDetails client:load product={product} />
+  </main>
+</Layout>
