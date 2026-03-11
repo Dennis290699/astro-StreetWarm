@@ -14,60 +14,110 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-[100] transition-colors duration-300 ${
-        isScrolled ? 'bg-[var(--body-color)] shadow-[0_1px_4px_hsla(0,0%,15%,0.1)]' : 'bg-transparent'
+      className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${
+        isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-5'
       }`}
       id="header"
     >
-      <nav className="h-[calc(var(--header-height)+1.5rem)] flex justify-between items-center gap-12 max-w-[968px] mx-auto px-6">
-        <a href="/" className="text-[var(--title-color)] lowercase font-bold tracking-[1px] inline-flex items-center gap-1">
-          <i className="bx bxs-shopping-bags text-xl"></i> StreetWarm
+      <nav className="flex justify-between items-center max-w-7xl mx-auto px-6 2xl:px-0">
+        
+        {/* LOGO */}
+        <a href="/" className="text-[var(--title-color)] lowercase font-black tracking-widest inline-flex items-center gap-2 group text-xl">
+          <span className="w-8 h-8 rounded-lg bg-[var(--title-color)] text-white flex justify-center items-center group-hover:bg-[var(--first-color)] transition-colors">
+            <i className="bx bxs-shopping-bags text-xl"></i>
+          </span>
+          StreetWarm
         </a>
 
-        {/* Menu for desktop (and mobile via classes if needed) */}
-        <div
-          className={`flex-1 md:block ${
-             isMenuOpen ? 'fixed top-0 right-0 w-[80%] h-full bg-[var(--container-color)] p-12 transition-all duration-300 shadow-[-2px_0_4px_hsla(0,0%,15%,0.1)] z-[100]' : 'hidden md:flex'
-          }`}
-          id="nav-menu"
-        >
-          <ul className="flex flex-col md:flex-row items-center gap-8">
-            <li className="nav__item">
-              <a href="/" className="text-[var(--title-color)] font-medium transition-colors hover:text-[var(--first-color)]">Home</a>
-            </li>
-            <li className="nav__item">
-              <a href="/shop" className="text-[var(--title-color)] font-medium transition-colors hover:text-[var(--first-color)]">Shop</a>
-            </li>
-            <li className="nav__item">
-              <a href="/blog" className="text-[var(--title-color)] font-medium transition-colors hover:text-[var(--first-color)]">Blog</a>
-            </li>
-            <li className="nav__item">
-              <a href="/faq" className="text-[var(--title-color)] font-medium transition-colors hover:text-[var(--first-color)]">Faq's</a>
-            </li>
-            <li className="nav__item">
-              <a href="/contact" className="text-[var(--title-color)] font-medium transition-colors hover:text-[var(--first-color)]">Contact</a>
-            </li>
+        {/* DESKTOP MENU */}
+        <div className="hidden md:flex items-center flex-1 justify-center">
+          <ul className="flex items-center gap-10">
+            {['Home', 'Shop', 'Blog', "Faq's", 'Contact'].map((item, idx) => {
+              const link = item === 'Home' ? '/' : `/${item.toLowerCase().replace("'", '')}`;
+              return (
+                <li key={idx} className="relative group">
+                  <a href={link} className="text-gray-600 font-semibold transition-colors hover:text-[var(--first-color)] text-[15px] tracking-wide">
+                    {item}
+                  </a>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--first-color)] transition-all duration-300 group-hover:w-full"></span>
+                </li>
+              );
+            })}
           </ul>
+        </div>
 
-          <div
-            className="text-3xl absolute top-[0.9rem] right-5 cursor-pointer md:hidden text-[var(--title-color)]"
+        {/* RIGHT SIDE ICONS */}
+        <div className="flex items-center gap-5 md:gap-6 text-[var(--title-color)]">
+          <button 
+            onClick={toggleLogin}
+            className="text-2xl cursor-pointer hover:text-[var(--first-color)] transition-colors relative group"
+            title="User Account"
+          >
+            <i className="bx bx-user"></i>
+            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">Login</span>
+          </button>
+          
+          <button 
+            onClick={toggleCart}
+            className="text-2xl cursor-pointer hover:text-[var(--first-color)] transition-colors relative group"
+            title="Shopping Cart"
+          >
+            <i className="bx bx-shopping-bag"></i>
+          </button>
+          
+          <button 
+            onClick={toggleMenu}
+            className="text-2xl cursor-pointer md:hidden hover:text-[var(--first-color)] transition-colors"
+            title="Menu"
+          >
+            <i className="bx bx-menu-alt-right"></i>
+          </button>
+        </div>
+
+        {/* MOBILE OVERLAY */}
+        <div 
+          className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+          onClick={closeMenu}
+        />
+
+        {/* MOBILE MENU SIDEBAR */}
+        <div
+          className={`fixed top-0 right-0 w-[85%] sm:w-[350px] h-full bg-white shadow-[-10px_0_30px_rgba(0,0,0,0.1)] z-50 transform transition-transform duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden flex flex-col justify-center
+            ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}
+          `}
+        >
+          <button
+            className="absolute top-6 right-6 text-3xl text-gray-400 hover:text-red-500 transition-colors"
             onClick={closeMenu}
           >
             <i className="bx bx-x"></i>
+          </button>
+
+          <div className="px-10 pb-10 border-b border-gray-100 mb-8">
+            <h2 className="text-2xl font-black tracking-widest uppercase text-[var(--title-color)]">Menu</h2>
+          </div>
+
+          <ul className="flex flex-col gap-6 px-10">
+            {['Home', 'Shop', 'Blog', "Faq's", 'Contact'].map((item, idx) => {
+              const link = item === 'Home' ? '/' : `/${item.toLowerCase().replace("'", '')}`;
+              return (
+                <li key={idx}>
+                  <a href={link} onClick={closeMenu} className="text-2xl font-bold text-[var(--title-color)] flex items-center justify-between group">
+                    {item}
+                    <i className="bx bx-chevron-right text-[var(--first-color)] opacity-0 -translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"></i>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+          
+          <div className="absolute bottom-10 left-10 right-10 flex justify-center gap-6 text-2xl text-gray-400">
+             <a href="#" className="hover:text-[var(--first-color)] transition-colors"><i className='bx bxl-facebook-circle'></i></a>
+             <a href="#" className="hover:text-[var(--first-color)] transition-colors"><i className='bx bxl-instagram-alt'></i></a>
+             <a href="#" className="hover:text-[var(--first-color)] transition-colors"><i className='bx bxl-twitter'></i></a>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 ml-auto text-[var(--title-color)]">
-          <div className="text-xl cursor-pointer" onClick={toggleLogin}>
-            <i className="bx bx-user"></i>
-          </div>
-          <div className="text-xl cursor-pointer" onClick={toggleCart}>
-            <i className="bx bx-shopping-bag"></i>
-          </div>
-          <div className="text-xl cursor-pointer md:hidden" onClick={toggleMenu}>
-            <i className="bx bx-grid-alt"></i>
-          </div>
-        </div>
       </nav>
     </header>
   );
