@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 - Page Not Found | StreetWarm">
+  <main class="min-h-[80vh] flex flex-col items-center justify-center text-center px-6 relative overflow-hidden bg-white">
+    
+    {/* Decorative background blurs */}
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gray-50 rounded-full blur-3xl -z-10"></div>
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--first-color)]/5 rounded-full blur-3xl -z-10"></div>
+    
+    <div class="max-w-2xl relative z-10 pt-20">
+      <h1 class="text-[12rem] sm:text-[15rem] leading-none font-black text-[var(--title-color)]/5 select-none drop-shadow-sm absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10">
+        404
+      </h1>
+      
+      <div class="flex flex-col items-center">
+        <div class="w-24 h-24 bg-red-50 text-red-500 rounded-full flex items-center justify-center mb-8 shadow-inner">
+          <i class='bx bx-ghost text-5xl'></i>
+        </div>
+        
+        <h2 class="text-4xl sm:text-5xl font-black text-[var(--title-color)] mb-6 tracking-tight">Oops! Page not found.</h2>
+        <p class="text-gray-500 text-lg sm:text-xl mb-10 max-w-lg leading-relaxed">
+          The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <a 
+            href="/" 
+            class="flex items-center justify-center gap-3 bg-[var(--title-color)] text-white px-8 py-4 rounded-full font-bold transition-all duration-300 hover:bg-[var(--first-color)] hover:shadow-lg hover:shadow-[var(--first-color)]/30 w-full sm:w-auto hover:-translate-y-1"
+          >
+            <i class='bx bx-home-alt text-xl'></i>
+            Back to Home
+          </a>
+          <a 
+            href="/shop" 
+            class="flex items-center justify-center gap-3 bg-white text-[var(--title-color)] border-2 border-gray-100 px-8 py-4 rounded-full font-bold transition-all duration-300 hover:border-[var(--title-color)] w-full sm:w-auto"
+          >
+            Keep Shopping
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

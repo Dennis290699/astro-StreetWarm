@@ -2,9 +2,123 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Contact - StreetWarm">
-  <section class="py-28 max-w-[968px] mx-auto px-6 min-h-[50vh]">
-    <h2 class="text-[var(--h1-font-size)] text-center text-[var(--title-color)] font-medium mb-12">Contact Us</h2>
-    {/* Page content from original vanilla template is empty */}
-  </section>
+<Layout title="Contact Us | StreetWarm">
+  <main class="bg-white min-h-screen pt-24 pb-20 relative overflow-hidden">
+    
+    {/* Background elements */}
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gray-50 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2 -z-10"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 2xl:px-0 py-12 md:py-16">
+      
+      {/* HEADER PAGE */}
+      <div class="text-center mb-16 md:mb-24">
+        <span class="inline-block py-1.5 px-4 rounded-full bg-orange-50 text-[var(--first-color)] text-sm font-bold tracking-widest uppercase mb-4 shadow-sm">
+          Get in Touch
+        </span>
+        <h1 class="text-4xl md:text-6xl text-[var(--title-color)] font-black leading-tight mb-6">
+          Let's Start a <span class="text-[var(--first-color)]">Conversation</span>
+        </h1>
+        <p class="text-gray-500 max-w-2xl mx-auto text-lg">
+          We'd love to hear from you. Whether you have a question about our collections, sizing, or anything else, our team is ready to answer all your questions.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        
+        {/* LEFT COL: Contact Info */}
+        <div class="flex flex-col gap-10">
+          
+          <div class="bg-gray-50 rounded-[2rem] p-8 md:p-10 border border-gray-100 flex items-start gap-6 group hover:-translate-y-1 transition-all duration-300">
+             <div class="w-16 h-16 bg-white shrink-0 text-[var(--title-color)] rounded-2xl flex items-center justify-center text-3xl shadow-sm border border-gray-100 group-hover:text-[var(--first-color)] group-hover:border-[var(--first-color)]/30 transition-colors">
+               <i class='bx bx-map'></i>
+             </div>
+             <div>
+               <h3 class="text-xl font-bold text-[var(--title-color)] mb-3">Headquarters</h3>
+               <p class="text-gray-500 leading-relaxed mb-4">
+                 123 StreetWear Avenue, Style District<br />
+                 New York, NY 10012<br />
+                 United States
+               </p>
+               <a href="#" class="text-[var(--title-color)] font-bold text-sm uppercase tracking-widest hover:text-[var(--first-color)] transition-colors flex items-center gap-2">
+                 Get Directions <i class="bx bx-right-arrow-alt text-xl"></i>
+               </a>
+             </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="bg-gray-50 rounded-[2rem] p-8 border border-gray-100 flex flex-col items-center text-center group hover:-translate-y-1 transition-all duration-300">
+               <div class="w-14 h-14 bg-white text-[var(--title-color)] rounded-2xl flex items-center justify-center text-2xl shadow-sm border border-gray-100 mb-6 group-hover:text-[var(--first-color)] transition-colors">
+                 <i class='bx bx-envelope'></i>
+               </div>
+               <h3 class="text-lg font-bold text-[var(--title-color)] mb-2">Email Us</h3>
+               <p class="text-gray-500 text-sm mb-4">Our friendly team is here to help.</p>
+               <a href="mailto:hello@streetwarm.com" class="text-[var(--title-color)] font-bold hover:text-[var(--first-color)] transition-colors">
+                 hello@streetwarm.com
+               </a>
+            </div>
+
+            <div class="bg-gray-50 rounded-[2rem] p-8 border border-gray-100 flex flex-col items-center text-center group hover:-translate-y-1 transition-all duration-300">
+               <div class="w-14 h-14 bg-white text-[var(--title-color)] rounded-2xl flex items-center justify-center text-2xl shadow-sm border border-gray-100 mb-6 group-hover:text-[var(--first-color)] transition-colors">
+                 <i class='bx bx-phone'></i>
+               </div>
+               <h3 class="text-lg font-bold text-[var(--title-color)] mb-2">Call Us</h3>
+               <p class="text-gray-500 text-sm mb-4">Mon-Fri from 8am to 5pm.</p>
+               <a href="tel:+15551234567" class="text-[var(--title-color)] font-bold hover:text-[var(--first-color)] transition-colors">
+                 +1 (555) 123-4567
+               </a>
+            </div>
+          </div>
+          
+        </div>
+
+        {/* RIGHT COL: Contact Form */}
+        <div class="bg-white rounded-[2.5rem] p-8 md:p-12 border border-gray-100 shadow-[0_15px_40px_rgba(0,0,0,0.04)] relative">
+          <div class="absolute -top-6 -right-6 w-24 h-24 bg-[var(--first-color)]/10 rounded-full blur-2xl -z-10"></div>
+          
+          <h2 class="text-3xl font-black text-[var(--title-color)] mb-8">Send us a Message</h2>
+          
+          <form class="flex flex-col gap-6" onsubmit="event.preventDefault();">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="flex flex-col gap-2">
+                <label for="firstName" class="text-sm font-bold text-[var(--title-color)] uppercase tracking-wider">First Name</label>
+                <input type="text" id="firstName" placeholder="John" class="w-full bg-gray-50 border border-gray-100 text-[var(--title-color)] p-4 rounded-xl outline-none focus:border-[var(--first-color)] focus:bg-white transition-all shadow-sm" required />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label for="lastName" class="text-sm font-bold text-[var(--title-color)] uppercase tracking-wider">Last Name</label>
+                <input type="text" id="lastName" placeholder="Doe" class="w-full bg-gray-50 border border-gray-100 text-[var(--title-color)] p-4 rounded-xl outline-none focus:border-[var(--first-color)] focus:bg-white transition-all shadow-sm" required />
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label for="email" class="text-sm font-bold text-[var(--title-color)] uppercase tracking-wider">Email Address</label>
+              <input type="email" id="email" placeholder="john@example.com" class="w-full bg-gray-50 border border-gray-100 text-[var(--title-color)] p-4 rounded-xl outline-none focus:border-[var(--first-color)] focus:bg-white transition-all shadow-sm" required />
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label for="subject" class="text-sm font-bold text-[var(--title-color)] uppercase tracking-wider">Subject</label>
+              <div class="relative">
+                <select id="subject" class="w-full bg-gray-50 border border-gray-100 text-[var(--title-color)] p-4 rounded-xl outline-none focus:border-[var(--first-color)] focus:bg-white transition-all shadow-sm appearance-none cursor-pointer">
+                  <option value="general">General Inquiry</option>
+                  <option value="support">Order Support</option>
+                  <option value="returns">Returns & Exchanges</option>
+                  <option value="wholesale">Wholesale</option>
+                </select>
+                <i class="bx bx-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-xl"></i>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label for="message" class="text-sm font-bold text-[var(--title-color)] uppercase tracking-wider">Message</label>
+              <textarea id="message" rows="5" placeholder="How can we help you?" class="w-full bg-gray-50 border border-gray-100 text-[var(--title-color)] p-4 rounded-xl outline-none focus:border-[var(--first-color)] focus:bg-white transition-all shadow-sm resize-none" required></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-[var(--title-color)] text-white py-5 rounded-xl font-bold text-lg transition-all duration-300 hover:bg-[var(--first-color)] hover:shadow-lg hover:shadow-[var(--first-color)]/30 hover:-translate-y-1 mt-2">
+              Send Message
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
 </Layout>

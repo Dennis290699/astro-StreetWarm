@@ -1,10 +1,146 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const BLOG_POSTS = [
+  {
+    id: 1,
+    title: "The Evolution of Streetwear in Modern Fashion",
+    excerpt: "Explore how urban culture and skateboarding aesthetics transformed high-end fashion runways.",
+    category: "Fashion Trends",
+    date: "Oct 12, 2023",
+    readTime: "5 min read",
+    image: "https://images.unsplash.com/photo-1523398002811-999aa8d9512e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    id: 2,
+    title: "How to Build a Minimalist Winter Wardrobe",
+    excerpt: "A comprehensive guide on selecting versatile cold-weather essentials that never go out of style.",
+    category: "Style Guide",
+    date: "Nov 05, 2023",
+    readTime: "7 min read",
+    image: "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    id: 3,
+    title: "Sustainable Fabrics: The Future of Our Brand",
+    excerpt: "Discover the eco-friendly materials we're introducing to reduce our carbon footprint this year.",
+    category: "Sustainability",
+    date: "Dec 18, 2023",
+    readTime: "4 min read",
+    image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    id: 4,
+    title: "Sneaker Culture: Top 10 Releases of The Year",
+    excerpt: "From retro revivals to futuristic silhouettes, we review the most hyped sneakers of the season.",
+    category: "Sneakers",
+    date: "Jan 22, 2024",
+    readTime: "8 min read",
+    image: "https://images.unsplash.com/photo-1552346154-21d32810baa3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    id: 5,
+    title: "Color Psychology in Everyday Outfits",
+    excerpt: "Learn how the colors you wear influence your mood, productivity, and how others perceive you.",
+    category: "Style Guide",
+    date: "Feb 14, 2024",
+    readTime: "6 min read",
+    image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    id: 6,
+    title: "Behind the Scenes: Designing Our Fall Collection",
+    excerpt: "Take a peek into the creative process of our lead designers and the inspiration behind the new drop.",
+    category: "Behind The Scenes",
+    date: "Mar 03, 2024",
+    readTime: "10 min read",
+    image: "https://images.unsplash.com/photo-1558769132-cb1fac08b4eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  }
+];
 ---
 
-<Layout title="Blog - StreetWarm">
-  <section class="py-28 max-w-[968px] mx-auto px-6 min-h-[50vh]">
-    <h2 class="text-[var(--h1-font-size)] text-center text-[var(--title-color)] font-medium mb-12">Blog</h2>
-    {/* Page content from original vanilla template is empty */}
-  </section>
+<Layout title="Blog | StreetWarm">
+  <main class="bg-white min-h-screen pt-24 pb-20">
+    
+    {/* HEADER PAGE */}
+    <div class="max-w-7xl mx-auto px-6 2xl:px-0 py-12 md:py-16 text-center">
+      <span class="inline-block py-1.5 px-4 rounded-full bg-orange-50 text-[var(--first-color)] text-sm font-bold tracking-widest uppercase mb-4 shadow-sm">
+        Our Journal
+      </span>
+      <h1 class="text-4xl md:text-6xl text-[var(--title-color)] font-black leading-tight mb-6">
+        Latest <span class="text-[var(--first-color)]">News</span> & Insights
+      </h1>
+      <p class="text-gray-500 max-w-2xl mx-auto text-lg">
+        Read our latest articles on streetwear trends, style guides, new collections, and behind the scenes of StreetWarm.
+      </p>
+    </div>
+
+    {/* BLOG GRID */}
+    <div class="max-w-7xl mx-auto px-6 2xl:px-0 flex flex-col items-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 w-full mb-16">
+        {BLOG_POSTS.map((post) => (
+          <article class="group bg-white rounded-[2rem] border border-gray-100 shadow-[0_5px_15px_rgba(0,0,0,0.03)] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-2 flex flex-col">
+            
+            {/* Image Container */}
+            <a href="#" class="block relative h-60 overflow-hidden">
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500 z-10"></div>
+              <img 
+                src={post.image} 
+                alt={post.title} 
+                class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" 
+              />
+              <span class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm text-[var(--title-color)] text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                {post.category}
+              </span>
+            </a>
+
+            {/* Content */}
+            <div class="p-8 flex flex-col flex-1">
+              <div class="flex items-center justify-between text-xs font-bold text-gray-400 mb-4 uppercase tracking-wider">
+                <span class="flex items-center gap-1.5"><i class='bx bx-calendar text-base'></i> {post.date}</span>
+                <span class="flex items-center gap-1.5"><i class='bx bx-time-five text-base'></i> {post.readTime}</span>
+              </div>
+              
+              <a href="#" class="block mb-4">
+                <h2 class="text-2xl font-black text-[var(--title-color)] leading-tight group-hover:text-[var(--first-color)] transition-colors line-clamp-2">
+                  {post.title}
+                </h2>
+              </a>
+              
+              <p class="text-gray-500 mb-6 line-clamp-3">
+                {post.excerpt}
+              </p>
+              
+              <div class="mt-auto pt-6 border-t border-gray-100">
+                <a href="#" class="inline-flex items-center gap-2 text-[var(--title-color)] font-bold hover:text-[var(--first-color)] transition-colors text-sm uppercase tracking-widest group/link">
+                  Read Article
+                  <i class="bx bx-right-arrow-alt text-xl transition-transform group-hover/link:translate-x-1"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {/* Pagination */}
+      <div class="flex justify-center items-center gap-2">
+         <button class="w-12 h-12 rounded-full border-2 border-gray-100 flex items-center justify-center text-gray-400 hover:border-[var(--title-color)] hover:text-[var(--title-color)] transition-colors" disabled title="Previous Page">
+           <i class="bx bx-chevron-left text-2xl"></i>
+         </button>
+         <button class="w-12 h-12 rounded-full border-2 border-transparent bg-[var(--title-color)] text-white font-bold flex items-center justify-center transition-colors">
+           1
+         </button>
+         <button class="w-12 h-12 rounded-full border-2 border-gray-100 hover:border-[var(--title-color)] text-gray-500 hover:text-[var(--title-color)] font-bold flex items-center justify-center transition-colors">
+           2
+         </button>
+         <button class="w-12 h-12 rounded-full border-2 border-gray-100 hover:border-[var(--title-color)] text-gray-500 hover:text-[var(--title-color)] font-bold flex items-center justify-center transition-colors">
+           3
+         </button>
+         <button class="w-12 h-12 rounded-full border-2 border-gray-100 flex items-center justify-center text-gray-500 hover:border-[var(--title-color)] hover:text-[var(--title-color)] transition-colors" title="Next Page">
+           <i class="bx bx-chevron-right text-2xl"></i>
+         </button>
+      </div>
+
+    </div>
+  </main>
 </Layout>
