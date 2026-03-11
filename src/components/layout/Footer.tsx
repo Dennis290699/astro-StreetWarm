@@ -1,64 +1,79 @@
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden pt-28 pb-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-[968px] mx-auto px-6 justify-items-center sm:justify-items-start">
-        {/* FOOTER CONTENT 1 */}
-        <div className="flex flex-col mb-8 md:mb-0 text-center sm:text-left">
-          <a href="#" className="text-[var(--title-color)] lowercase font-bold tracking-[1px] inline-flex items-center gap-1 mb-4 mx-auto sm:mx-0">
-            <i className="bx bxs-shopping-bags text-base"></i>StreetWarm
-          </a>
+    <footer className="relative overflow-hidden pt-24 pb-10 bg-gray-50 border-t border-gray-100 mt-20">
+      <div className="max-w-7xl mx-auto px-6 2xl:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+          
+          {/* BRAND COLUMN */}
+          <div className="flex flex-col text-center md:text-left">
+            <a href="/" className="group flex items-center justify-center md:justify-start gap-2 mb-6">
+              <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-[var(--title-color)] text-white transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110 group-hover:bg-[var(--first-color)] shadow-md">
+                <i className="bx bxs-shopping-bags text-xl"></i>
+              </div>
+              <span className="text-[var(--title-color)] font-black tracking-widest text-xl uppercase transition-colors group-hover:text-[var(--first-color)]">
+                Street<span className="text-[var(--first-color)] group-hover:text-[var(--title-color)] transition-colors">Warm</span>
+              </span>
+            </a>
+            
+            <p className="text-gray-500 leading-relaxed mb-8 max-w-xs mx-auto md:mx-0">
+              Elevate your street style with our exclusive collections. The biggest sale of your life is happening right now.
+            </p>
 
-          <p className="mb-10 text-[var(--text-color)]">Enjoy the biggest sale <br /> of your life</p>
+            <div className="flex justify-center md:justify-start gap-4">
+              <a href="#" className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-400 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all shadow-sm" title="Facebook">
+                <i className="bx bxl-facebook text-xl"></i>
+              </a>
+              <a href="#" className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-400 hover:bg-[#E1306C] hover:text-white hover:border-[#E1306C] transition-all shadow-sm" title="Instagram">
+                <i className="bx bxl-instagram text-xl"></i>
+              </a>
+              <a href="#" className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-400 hover:bg-[#1DA1F2] hover:text-white hover:border-[#1DA1F2] transition-all shadow-sm" title="Twitter">
+                <i className="bx bxl-twitter text-xl"></i>
+              </a>
+            </div>
+          </div>
 
-          <div className="flex justify-center sm:justify-start gap-3">
-            <a href="#" className="inline-flex bg-[var(--container-color)] p-1 rounded text-[var(--title-color)] text-base transition-colors hover:bg-[var(--first-color)] hover:text-white">
-              <i className="bx bxl-facebook"></i>
-            </a>
-            <a href="#" className="inline-flex bg-[var(--container-color)] p-1 rounded text-[var(--title-color)] text-base transition-colors hover:bg-[var(--first-color)] hover:text-white">
-              <i className="bx bxl-instagram"></i>
-            </a>
-            <a href="#" className="inline-flex bg-[var(--container-color)] p-1 rounded text-[var(--title-color)] text-base transition-colors hover:bg-[var(--first-color)] hover:text-white">
-              <i className="bx bxl-twitter"></i>
-            </a>
+          {/* LINKS COLUMN 1 */}
+          <div className="text-center md:text-left">
+            <h3 className="text-lg font-bold text-[var(--title-color)] mb-6 uppercase tracking-wider">Company</h3>
+            <ul className="flex flex-col gap-4">
+              <li><a href="#" className="text-gray-500 font-medium transition-colors hover:text-[var(--first-color)] hover:translate-x-1 inline-block transform duration-300">About Us</a></li>
+              <li><a href="#" className="text-gray-500 font-medium transition-colors hover:text-[var(--first-color)] hover:translate-x-1 inline-block transform duration-300">Careers</a></li>
+              <li><a href="#" className="text-gray-500 font-medium transition-colors hover:text-[var(--first-color)] hover:translate-x-1 inline-block transform duration-300">Store Locator</a></li>
+            </ul>
+          </div>
+
+          {/* LINKS COLUMN 2 */}
+          <div className="text-center md:text-left">
+            <h3 className="text-lg font-bold text-[var(--title-color)] mb-6 uppercase tracking-wider">Services</h3>
+            <ul className="flex flex-col gap-4">
+              <li><a href="/shop" className="text-gray-500 font-medium transition-colors hover:text-[var(--first-color)] hover:translate-x-1 inline-block transform duration-300">Shop Collection</a></li>
+              <li><a href="#" className="text-gray-500 font-medium transition-colors hover:text-[var(--first-color)] hover:translate-x-1 inline-block transform duration-300">Special Discounts</a></li>
+              <li><a href="#" className="text-gray-500 font-medium transition-colors hover:text-[var(--first-color)] hover:translate-x-1 inline-block transform duration-300">Gift Cards</a></li>
+            </ul>
+          </div>
+
+          {/* LINKS COLUMN 3 */}
+          <div className="text-center md:text-left">
+            <h3 className="text-lg font-bold text-[var(--title-color)] mb-6 uppercase tracking-wider">Support</h3>
+            <ul className="flex flex-col gap-4">
+              <li><a href="/contact" className="text-gray-500 font-medium transition-colors hover:text-[var(--first-color)] hover:translate-x-1 inline-block transform duration-300">Contact Us</a></li>
+              <li><a href="/faq" className="text-gray-500 font-medium transition-colors hover:text-[var(--first-color)] hover:translate-x-1 inline-block transform duration-300">FAQ & Returns</a></li>
+              <li><a href="#" className="text-gray-500 font-medium transition-colors hover:text-[var(--first-color)] hover:translate-x-1 inline-block transform duration-300">Terms & Conditions</a></li>
+            </ul>
+          </div>
+          
+        </div>
+
+        {/* BOTTOM BAR */}
+        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <span className="text-sm font-medium text-gray-400 text-center md:text-left">
+             © {new Date().getFullYear()} StreetWarm. All rights reserved.
+          </span>
+          <div className="flex items-center gap-4">
+            <img src="/assets/productos/payment-method.png" alt="Payment Methods" className="h-6 opacity-70 grayscale hover:grayscale-0 transition-all duration-300" />
           </div>
         </div>
-
-        {/* FOOTER CONTENT 2 */}
-        <div className="mb-8 md:mb-0 text-center sm:text-left">
-          <h3 className="text-[var(--h3-font-size)] text-[var(--title-color)] font-medium mb-4">About</h3>
-
-          <ul className="flex flex-col gap-2">
-            <li><a href="#" className="text-[var(--small-font-size)] text-[var(--text-color)] transition-colors hover:text-[var(--title-color)]">About Us</a></li>
-            <li><a href="#" className="text-[var(--small-font-size)] text-[var(--text-color)] transition-colors hover:text-[var(--title-color)]">Costumer Support</a></li>
-            <li><a href="#" className="text-[var(--small-font-size)] text-[var(--text-color)] transition-colors hover:text-[var(--title-color)]">Support Center</a></li>
-          </ul>
-        </div>
-
-        {/* FOOTER CONTENT 3 */}
-        <div className="mb-8 md:mb-0 text-center sm:text-left">
-          <h3 className="text-[var(--h3-font-size)] text-[var(--title-color)] font-medium mb-4">Our Services</h3>
-
-          <ul className="flex flex-col gap-2">
-            <li><a href="#" className="text-[var(--small-font-size)] text-[var(--text-color)] transition-colors hover:text-[var(--title-color)]">Shop</a></li>
-            <li><a href="#" className="text-[var(--small-font-size)] text-[var(--text-color)] transition-colors hover:text-[var(--title-color)]">Discounts</a></li>
-            <li><a href="#" className="text-[var(--small-font-size)] text-[var(--text-color)] transition-colors hover:text-[var(--title-color)]">Shopping mode</a></li>
-          </ul>
-        </div>
-
-        {/* FOOTER CONTENT 4 */}
-        <div className="mb-8 md:mb-0 text-center sm:text-left">
-          <h3 className="text-[var(--h3-font-size)] text-[var(--title-color)] font-medium mb-4">Our Company</h3>
-
-          <ul className="flex flex-col gap-2">
-            <li><a href="/registration" className="text-[var(--small-font-size)] text-[var(--text-color)] transition-colors hover:text-[var(--title-color)]">Register</a></li>
-            <li><a href="/contact" className="text-[var(--small-font-size)] text-[var(--text-color)] transition-colors hover:text-[var(--title-color)]">Contact Us</a></li>
-            <li><a href="#" className="text-[var(--small-font-size)] text-[var(--text-color)] transition-colors hover:text-[var(--title-color)]">About Us</a></li>
-          </ul>
-        </div>
       </div>
-      <span className="block text-center text-[var(--smaller-font-size)] text-[var(--text-color)] mt-24">
-        &#169; StreetWarm. All rights reserved
-      </span>
     </footer>
   );
 }
