@@ -3,7 +3,7 @@ export default function Steps() {
     <section className="py-28 max-w-[968px] mx-auto px-6">
       <div className="bg-[var(--container-color)] p-14 rounded-2xl shadow-[0_4px_16px_hsla(0,0%,15%,0.05)]">
         <h2 className="text-[var(--h1-font-size)] text-center text-[var(--title-color)] font-medium mb-12">
-          How to order products <br />from B4LB3R1TH
+          How to order products <br />from StreetWarm
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">

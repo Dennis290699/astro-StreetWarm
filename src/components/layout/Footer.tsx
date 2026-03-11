@@ -5,7 +5,7 @@ export default function Footer() {
         {/* FOOTER CONTENT 1 */}
         <div className="flex flex-col mb-8 md:mb-0 text-center sm:text-left">
           <a href="#" className="text-[var(--title-color)] lowercase font-bold tracking-[1px] inline-flex items-center gap-1 mb-4 mx-auto sm:mx-0">
-            <i className="bx bxs-shopping-bags text-base"></i>B4LB3R1TH
+            <i className="bx bxs-shopping-bags text-base"></i>StreetWarm
           </a>
 
           <p className="mb-10 text-[var(--text-color)]">Enjoy the biggest sale <br /> of your life</p>
@@ -57,7 +57,7 @@ export default function Footer() {
         </div>
       </div>
       <span className="block text-center text-[var(--smaller-font-size)] text-[var(--text-color)] mt-24">
-        &#169; B4LB3R1TH. All rights reserved
+        &#169; StreetWarm. All rights reserved
       </span>
     </footer>
   );

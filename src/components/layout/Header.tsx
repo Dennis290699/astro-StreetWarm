@@ -21,7 +21,7 @@ export default function Header() {
     >
       <nav className="h-[calc(var(--header-height)+1.5rem)] flex justify-between items-center gap-12 max-w-[968px] mx-auto px-6">
         <a href="/" className="text-[var(--title-color)] lowercase font-bold tracking-[1px] inline-flex items-center gap-1">
-          <i className="bx bxs-shopping-bags text-xl"></i> B4LB3R1TH
+          <i className="bx bxs-shopping-bags text-xl"></i> StreetWarm
         </a>
 
         {/* Menu for desktop (and mobile via classes if needed) */}
