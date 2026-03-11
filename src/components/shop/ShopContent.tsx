@@ -11,18 +11,21 @@ export default function ShopContent() {
   // State
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
+  const [activeTag, setActiveTag] = useState('All');
   const [sortOrder, setSortOrder] = useState('newest');
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Derive Categories
+  // Derive Categories and Tags
   const categories = ['All', ...Array.from(new Set(PRODUCTS.map((p) => p.category)))];
+  const tags = ['All', 'New', 'Sale']; // Mocked from UI design expectations
 
   // Filter & Search Logic
   const filteredProducts = useMemo(() => {
     let result = PRODUCTS.filter((product) => {
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = activeCategory === 'All' || product.category === activeCategory;
-      return matchesSearch && matchesCategory;
+      const matchesTag = activeTag === 'All' || product.tag === activeTag;
+      return matchesSearch && matchesCategory && matchesTag;
     });
 
     if (sortOrder === 'price-low') {
@@ -32,7 +35,7 @@ export default function ShopContent() {
     }
     
     return result;
-  }, [searchTerm, activeCategory, sortOrder]);
+  }, [searchTerm, activeCategory, activeTag, sortOrder]);
 
   // Pagination Logic
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
@@ -44,12 +47,17 @@ export default function ShopContent() {
   // Handlers
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
-    setCurrentPage(1); // Reset to first page
+    setCurrentPage(1);
+  };
+
+  const handleTagClick = (tag: string) => {
+    setActiveTag(tag);
+    setCurrentPage(1);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); // Reset to first page
+    setCurrentPage(1);
   };
 
   const handlePageChange = (page: number) => {
@@ -57,10 +65,18 @@ export default function ShopContent() {
     setCurrentPage(page);
   };
 
+  const clearFilters = () => {
+    setSearchTerm('');
+    setActiveCategory('All');
+    setActiveTag('All');
+    setSortOrder('newest');
+    setCurrentPage(1);
+  };
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_3.8fr] gap-10 py-8 lg:py-12">
       {/* SIDEBAR: Filters & Search */}
-      <aside className="bg-white p-8 rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-gray-100 h-fit sticky top-28">
+      <aside className="bg-white p-6 md:p-8 rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-gray-100 h-fit sticky top-28">
         
         {/* Search Bar */}
         <div className="mb-10">
@@ -122,9 +138,31 @@ export default function ShopContent() {
             ))}
           </div>
         </div>
+
+        {/* Conditions / Tags */}
+        <div className="mb-8">
+          <h3 className="text-sm font-bold text-[var(--title-color)] uppercase tracking-wider mb-4 block">
+            Condition
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => handleTagClick(tag)}
+                className={`flex-1 py-2 px-4 rounded-xl font-bold text-sm transition-all border ${
+                  activeTag === tag
+                    ? 'bg-[var(--title-color)] text-white border-[var(--title-color)] shadow-md'
+                    : 'bg-white text-gray-500 border-gray-200 hover:border-[var(--title-color)] hover:text-[var(--title-color)]'
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+        </div>
         
         {/* Sort By */}
-        <div className="mb-4">
+        <div className="mb-2">
           <label className="text-sm font-bold text-[var(--title-color)] uppercase tracking-wider mb-4 block">
             Sort By
           </label>
@@ -136,7 +174,7 @@ export default function ShopContent() {
               aria-label="Sort By"
               className="w-full bg-gray-50 border border-gray-100 text-[var(--title-color)] p-4 rounded-xl outline-none focus:border-[var(--first-color)] focus:bg-white shadow-sm appearance-none cursor-pointer font-medium transition-all"
             >
-              <option value="newest">Newest Arrivals</option>
+              <option value="newest">Recommended</option>
               <option value="price-low">Price: Low to High</option>
               <option value="price-high">Price: High to Low</option>
             </select>
@@ -156,7 +194,7 @@ export default function ShopContent() {
               We couldn't find anything matching "{searchTerm}". Try adjusting your search or filters.
             </p>
             <button 
-              onClick={() => { setSearchTerm(''); setActiveCategory('All'); }}
+              onClick={clearFilters}
               className="mt-6 bg-[var(--title-color)] text-white px-6 py-3 rounded-full font-bold hover:bg-[var(--first-color)] transition-colors"
             >
               Clear Filters

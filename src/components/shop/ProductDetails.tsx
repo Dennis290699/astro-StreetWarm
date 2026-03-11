@@ -21,7 +21,7 @@ export default function ProductDetails({ product }: { product: Product }) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 2xl:px-0 py-12 lg:py-20">
+    <div className="max-w-7xl mx-auto px-6 2xl:px-0 pt-4 pb-12 lg:pt-8 lg:pb-20">
       
       {/* BREADCRUMB */}
       <nav className="flex items-center gap-2 text-sm text-gray-500 font-medium mb-12">

@@ -69,8 +69,11 @@ export default function Footer() {
           <span className="text-sm font-medium text-gray-400 text-center md:text-left">
              © {new Date().getFullYear()} StreetWarm. All rights reserved.
           </span>
-          <div className="flex items-center gap-4">
-            <img src="/assets/productos/payment-method.png" alt="Payment Methods" className="h-6 opacity-70 grayscale hover:grayscale-0 transition-all duration-300" />
+          <div className="flex items-center gap-4 text-2xl text-gray-400">
+            <i className="bx bxl-visa hover:text-[#1434CB] transition-colors cursor-pointer" title="Visa"></i>
+            <i className="bx bxl-mastercard hover:text-[#EB001B] transition-colors cursor-pointer" title="Mastercard"></i>
+            <i className="bx bxl-paypal hover:text-[#00457C] transition-colors cursor-pointer" title="PayPal"></i>
+            <i className="bx bxl-apple hover:text-black transition-colors cursor-pointer" title="Apple Pay"></i>
           </div>
         </div>
       </div>
