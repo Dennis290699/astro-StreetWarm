@@ -108,8 +108,8 @@ export default function Header() {
 
       {/* MOBILE MENU SIDEBAR */}
       <div
-        className={`fixed top-0 right-0 w-[85%] sm:w-[350px] h-full bg-white text-[var(--title-color)] shadow-[-10px_0_40px_rgba(0,0,0,0.15)] z-[120] transform transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden flex flex-col justify-center rounded-l-[2rem]
-          ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}
+        className={`fixed top-0 right-0 w-[85%] sm:w-[350px] h-full bg-white text-[var(--title-color)] z-[120] transform transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden flex flex-col justify-center rounded-l-[2rem]
+          ${isMenuOpen ? 'translate-x-0 shadow-[-10px_0_40px_rgba(0,0,0,0.15)]' : 'translate-x-full shadow-none'}
         `}
       >
         <button

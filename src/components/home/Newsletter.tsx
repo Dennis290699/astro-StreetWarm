@@ -16,20 +16,20 @@ export default function Newsletter() {
             Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.
           </p>
 
-          <form className="bg-white p-2 flex flex-col sm:flex-row justify-between rounded-full shadow-lg border border-gray-100 max-w-lg mx-auto transition-shadow focus-within:shadow-xl focus-within:border-[var(--first-color)]/30">
-            <div className="flex items-center flex-1 px-4 py-2 sm:py-0">
+          <form className="bg-white p-2 flex flex-col sm:flex-row justify-between rounded-[2rem] sm:rounded-full shadow-lg border border-gray-100 max-w-lg mx-auto transition-shadow focus-within:shadow-xl focus-within:border-[var(--first-color)]/30">
+            <div className="flex items-center flex-1 px-4 py-3 sm:py-0">
               <i className="bx bx-mail-send text-gray-400 text-xl mr-3"></i>
               <input 
                 type="email" 
                 placeholder="Enter your e-mail address" 
                 title="Email address"
                 required
-                className="w-full bg-transparent text-[var(--title-color)] outline-none placeholder:text-gray-400"
+                className="w-full bg-transparent text-[var(--title-color)] outline-none placeholder:text-gray-400 text-sm sm:text-base"
               />
             </div>
             <button 
               type="submit"
-              className="bg-[var(--title-color)] text-white px-8 py-4 rounded-full font-bold transition-all duration-300 hover:bg-[var(--first-color)] hover:shadow-lg hover:shadow-[var(--first-color)]/30 w-full sm:w-auto mt-2 sm:mt-0"
+              className="bg-[var(--title-color)] text-white px-8 py-3.5 sm:py-4 rounded-full font-bold transition-all duration-300 hover:bg-[var(--first-color)] hover:shadow-lg hover:shadow-[var(--first-color)]/30 w-full sm:w-auto mt-2 sm:mt-0 text-sm sm:text-base"
             >
               Subscribe
             </button>
