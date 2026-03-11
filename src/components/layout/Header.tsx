@@ -2,7 +2,12 @@ import { useEffect } from 'react';
 import { useAppStore } from '../../store/useAppStore';
 
 export default function Header() {
-  const { isScrolled, setScrolled, toggleMenu, toggleCart, toggleLogin, isMenuOpen, closeMenu } = useAppStore();
+  const { 
+    isScrolled, setScrolled, 
+    toggleMenu, toggleCart, toggleLogin, 
+    isMenuOpen, closeMenu, 
+    isCartOpen, isLoginOpen 
+  } = useAppStore();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -11,6 +16,22 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [setScrolled]);
+
+  // Bloqueo de scroll global cuando un sidebar está abierto
+  useEffect(() => {
+    if (isMenuOpen || isCartOpen || isLoginOpen) {
+      document.body.style.overflow = 'hidden';
+      // Ajuste para evitar shift por el scrollbar
+      document.body.style.paddingRight = '8px'; 
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    };
+  }, [isMenuOpen, isCartOpen, isLoginOpen]);
 
   return (
     <header
@@ -84,29 +105,36 @@ export default function Header() {
 
         {/* MOBILE MENU SIDEBAR */}
         <div
-          className={`fixed top-0 right-0 w-[85%] sm:w-[350px] h-full bg-white shadow-[-10px_0_30px_rgba(0,0,0,0.1)] z-50 transform transition-transform duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden flex flex-col justify-center
+          className={`fixed top-0 right-0 w-[85%] sm:w-[350px] h-full bg-[#1A1A1A] text-white shadow-[-20px_0_50px_rgba(0,0,0,0.5)] z-50 transform transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden flex flex-col justify-center rounded-l-[2.5rem]
             ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}
           `}
         >
           <button
-            className="absolute top-6 right-6 text-3xl text-gray-400 hover:text-red-500 transition-colors"
+            className="absolute top-8 right-8 text-4xl text-gray-500 hover:text-white transition-colors"
             onClick={closeMenu}
             title="Close menu"
           >
             <i className="bx bx-x"></i>
           </button>
 
-          <div className="px-10 pb-10 border-b border-gray-100 mb-8">
-            <h2 className="text-2xl font-black tracking-widest uppercase text-[var(--title-color)]">Menu</h2>
+          <div className="px-12 pb-10 border-b border-gray-800 mb-8">
+            <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 text-[var(--first-color)] text-xs font-bold tracking-widest uppercase mb-4 w-fit">
+              Navigation
+            </span>
+            <h2 className="text-3xl font-black tracking-widest uppercase text-white">Menu</h2>
           </div>
 
-          <ul className="flex flex-col gap-6 px-10">
+          <ul className="flex flex-col gap-6 px-12 overflow-y-auto custom-scrollbar">
             {['Home', 'Shop', 'Blog', "Faq's", 'Contact'].map((item, idx) => {
               const link = item === 'Home' ? '/' : `/${item.toLowerCase().replace("'", '')}`;
               return (
                 <li key={idx}>
-                  <a href={link} onClick={closeMenu} className="text-2xl font-bold text-[var(--title-color)] flex items-center justify-between group">
-                    {item}
+                  <a 
+                    href={link} 
+                    onClick={closeMenu} 
+                    className="text-2xl font-medium text-gray-300 flex items-center justify-between group py-3 border-b border-gray-800 hover:text-white transition-colors"
+                  >
+                    <span className="group-hover:translate-x-2 transition-transform duration-300">{item}</span>
                     <i className="bx bx-chevron-right text-[var(--first-color)] opacity-0 -translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"></i>
                   </a>
                 </li>
@@ -114,10 +142,10 @@ export default function Header() {
             })}
           </ul>
           
-          <div className="absolute bottom-10 left-10 right-10 flex justify-center gap-6 text-2xl text-gray-400">
-             <a href="#" className="hover:text-[var(--first-color)] transition-colors" title="Facebook"><i className='bx bxl-facebook-circle'></i></a>
-             <a href="#" className="hover:text-[var(--first-color)] transition-colors" title="Instagram"><i className='bx bxl-instagram-alt'></i></a>
-             <a href="#" className="hover:text-[var(--first-color)] transition-colors" title="Twitter"><i className='bx bxl-twitter'></i></a>
+          <div className="absolute bottom-10 left-12 right-12 flex justify-start gap-6 text-2xl text-gray-500">
+             <a href="#" className="hover:text-white transition-colors" title="Facebook"><i className='bx bxl-facebook-circle'></i></a>
+             <a href="#" className="hover:text-white transition-colors" title="Instagram"><i className='bx bxl-instagram-alt'></i></a>
+             <a href="#" className="hover:text-white transition-colors" title="Twitter"><i className='bx bxl-twitter'></i></a>
           </div>
         </div>
 

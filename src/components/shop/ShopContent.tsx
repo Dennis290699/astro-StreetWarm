@@ -74,9 +74,9 @@ export default function ShopContent() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_3.8fr] gap-10 py-8 lg:py-12">
+    <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_3.8fr] gap-10 py-8 lg:py-12 relative">
       {/* SIDEBAR: Filters & Search */}
-      <aside className="bg-white p-6 md:p-8 rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-gray-100 h-fit sticky top-28">
+      <aside className="bg-white p-6 md:p-8 rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-gray-100 h-fit lg:sticky lg:top-28 z-30">
         
         {/* Search Bar */}
         <div className="mb-10">
