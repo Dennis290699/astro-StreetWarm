@@ -6,7 +6,7 @@ export default function ProductDetails({ product }: { product: Product }) {
   const addToCart = useAppStore((state) => state.addToCart);
   const [quantity, setQuantity] = useState(1);
   const [activeImageIdx, setActiveImageIdx] = useState(0);
-  
+
   // Mocking multiple images using the same one for demonstration
   const images = [product.image, product.image, product.image];
 
@@ -21,10 +21,10 @@ export default function ProductDetails({ product }: { product: Product }) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 2xl:px-0 pt-4 pb-12 lg:pt-8 lg:pb-20">
-      
+    <div className="max-w-7xl mx-auto px-6 2xl:px-0 pb-12 lg:pb-20">
+
       {/* BREADCRUMB */}
-      <nav className="flex items-center gap-2 text-sm text-gray-500 font-medium mb-12">
+      <nav className="flex items-center gap-2 text-sm text-gray-500 font-medium mb-8">
         <a href="/" className="hover:text-[var(--first-color)] transition-colors">Home</a>
         <i className="bx bx-chevron-right text-gray-400"></i>
         <a href="/shop" className="hover:text-[var(--first-color)] transition-colors">Shop</a>
@@ -37,13 +37,12 @@ export default function ProductDetails({ product }: { product: Product }) {
         <div className="flex flex-col-reverse md:flex-row gap-6">
           <div className="flex md:flex-col gap-4 overflow-x-auto md:overflow-visible custom-scrollbar pb-2 md:pb-0 w-full md:w-24 shrink-0">
             {images.map((img, idx) => (
-              <button 
+              <button
                 key={idx}
                 onClick={() => setActiveImageIdx(idx)}
                 title={`View image ${idx + 1}`}
-                className={`w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gray-50 border-2 overflow-hidden shrink-0 transition-all ${
-                  activeImageIdx === idx ? 'border-[var(--title-color)] scale-105 shadow-md' : 'border-transparent hover:border-gray-200'
-                }`}
+                className={`w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gray-50 border-2 overflow-hidden shrink-0 transition-all ${activeImageIdx === idx ? 'border-[var(--title-color)] scale-105 shadow-md' : 'border-transparent hover:border-gray-200'
+                  }`}
               >
                 <img src={img} alt="Thumbnail" className="w-full h-full object-contain p-2" />
               </button>
@@ -59,10 +58,10 @@ export default function ProductDetails({ product }: { product: Product }) {
                 </span>
               </div>
             )}
-            <img 
-              src={images[activeImageIdx]} 
-              alt={product.name} 
-              className="relative z-10 w-full max-w-[400px] object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" 
+            <img
+              src={images[activeImageIdx]}
+              alt={product.name}
+              className="relative z-10 w-full max-w-[400px] object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110"
             />
           </div>
         </div>
@@ -72,11 +71,11 @@ export default function ProductDetails({ product }: { product: Product }) {
           <span className="inline-block py-1.5 px-4 rounded-full bg-orange-50 text-[var(--first-color)] text-xs font-bold tracking-widest uppercase mb-6 w-fit border border-orange-100">
             {product.category}
           </span>
-          
+
           <h1 className="text-4xl lg:text-5xl font-black text-[var(--title-color)] leading-tight mb-4">
             {product.name}
           </h1>
-          
+
           <div className="flex items-end gap-4 mb-8">
             <span className="text-4xl font-black text-[var(--first-color)]">${product.price}</span>
             {product.discount && (
@@ -85,7 +84,7 @@ export default function ProductDetails({ product }: { product: Product }) {
           </div>
 
           <p className="text-gray-500 text-lg leading-relaxed mb-10">
-            High-quality {product.category.toLowerCase()} designed for maximum comfort and premium style. 
+            High-quality {product.category.toLowerCase()} designed for maximum comfort and premium style.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
 
@@ -93,7 +92,7 @@ export default function ProductDetails({ product }: { product: Product }) {
             <h3 className="text-sm font-bold text-[var(--title-color)] uppercase tracking-wider mb-4">Select Size</h3>
             <div className="flex flex-wrap gap-3">
               {['S', 'M', 'L', 'XL'].map((size) => (
-                <button 
+                <button
                   key={size}
                   className="w-14 h-14 rounded-full border-2 border-gray-100 flex items-center justify-center font-bold text-gray-500 transition-all hover:border-[var(--title-color)] hover:text-[var(--title-color)] focus:border-[var(--title-color)] focus:bg-[var(--title-color)] focus:text-white"
                 >
@@ -106,7 +105,7 @@ export default function ProductDetails({ product }: { product: Product }) {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-6 mt-auto">
             {/* Quantity Selector */}
             <div className="flex items-center justify-between bg-gray-50 rounded-2xl border border-gray-100 p-2 sm:w-40 shrink-0">
-              <button 
+              <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
                 className="w-12 h-12 flex items-center justify-center bg-white rounded-xl shadow-sm text-gray-500 hover:text-[var(--title-color)] transition-colors"
                 title="Decrease quantity"
@@ -114,7 +113,7 @@ export default function ProductDetails({ product }: { product: Product }) {
                 <i className="bx bx-minus text-xl"></i>
               </button>
               <span className="font-bold text-lg text-[var(--title-color)]">{quantity}</span>
-              <button 
+              <button
                 onClick={() => setQuantity(quantity + 1)}
                 className="w-12 h-12 flex items-center justify-center bg-white rounded-xl shadow-sm text-gray-500 hover:text-[var(--title-color)] transition-colors"
                 title="Increase quantity"
@@ -124,7 +123,7 @@ export default function ProductDetails({ product }: { product: Product }) {
             </div>
 
             {/* Add to Cart Button */}
-            <button 
+            <button
               onClick={handleAddToCart}
               className="flex-1 bg-[var(--title-color)] text-white py-5 px-8 rounded-2xl font-bold text-lg transition-all duration-300 hover:bg-[var(--first-color)] hover:shadow-lg hover:shadow-[var(--first-color)]/30 hover:-translate-y-1 flex items-center justify-center gap-3"
             >
@@ -132,11 +131,11 @@ export default function ProductDetails({ product }: { product: Product }) {
               Add to Cart
             </button>
           </div>
-          
+
           <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col gap-4 text-sm font-medium text-gray-500">
-             <div className="flex items-center gap-3"><i className="bx bx-check-shield text-[var(--first-color)] text-xl"></i> 1 Year Minimum Warranty</div>
-             <div className="flex items-center gap-3"><i className="bx bx-refresh text-[var(--first-color)] text-xl"></i> 30 Days Free Return</div>
-             <div className="flex items-center gap-3"><i className="bx bx-car text-[var(--first-color)] text-xl"></i> Free Delivery for orders over $50</div>
+            <div className="flex items-center gap-3"><i className="bx bx-check-shield text-[var(--first-color)] text-xl"></i> 1 Year Minimum Warranty</div>
+            <div className="flex items-center gap-3"><i className="bx bx-refresh text-[var(--first-color)] text-xl"></i> 30 Days Free Return</div>
+            <div className="flex items-center gap-3"><i className="bx bx-car text-[var(--first-color)] text-xl"></i> Free Delivery for orders over $50</div>
           </div>
         </div>
       </div>
