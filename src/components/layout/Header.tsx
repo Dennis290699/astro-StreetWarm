@@ -22,11 +22,13 @@ export default function Header() {
       <nav className="flex justify-between items-center max-w-7xl mx-auto px-6 2xl:px-0">
         
         {/* LOGO */}
-        <a href="/" className="text-[var(--title-color)] lowercase font-black tracking-widest inline-flex items-center gap-2 group text-xl">
-          <span className="w-8 h-8 rounded-lg bg-[var(--title-color)] text-white flex justify-center items-center group-hover:bg-[var(--first-color)] transition-colors">
+        <a href="/" className="group flex items-center gap-2 z-50">
+          <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-[var(--title-color)] text-white transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110 group-hover:bg-[var(--first-color)] shadow-md">
             <i className="bx bxs-shopping-bags text-xl"></i>
+          </div>
+          <span className="text-[var(--title-color)] font-black tracking-widest text-xl uppercase transition-colors group-hover:text-[var(--first-color)]">
+            Street<span className="text-[var(--first-color)] group-hover:text-[var(--title-color)] transition-colors">Warm</span>
           </span>
-          StreetWarm
         </a>
 
         {/* DESKTOP MENU */}
@@ -89,6 +91,7 @@ export default function Header() {
           <button
             className="absolute top-6 right-6 text-3xl text-gray-400 hover:text-red-500 transition-colors"
             onClick={closeMenu}
+            title="Close menu"
           >
             <i className="bx bx-x"></i>
           </button>
@@ -112,9 +115,9 @@ export default function Header() {
           </ul>
           
           <div className="absolute bottom-10 left-10 right-10 flex justify-center gap-6 text-2xl text-gray-400">
-             <a href="#" className="hover:text-[var(--first-color)] transition-colors"><i className='bx bxl-facebook-circle'></i></a>
-             <a href="#" className="hover:text-[var(--first-color)] transition-colors"><i className='bx bxl-instagram-alt'></i></a>
-             <a href="#" className="hover:text-[var(--first-color)] transition-colors"><i className='bx bxl-twitter'></i></a>
+             <a href="#" className="hover:text-[var(--first-color)] transition-colors" title="Facebook"><i className='bx bxl-facebook-circle'></i></a>
+             <a href="#" className="hover:text-[var(--first-color)] transition-colors" title="Instagram"><i className='bx bxl-instagram-alt'></i></a>
+             <a href="#" className="hover:text-[var(--first-color)] transition-colors" title="Twitter"><i className='bx bxl-twitter'></i></a>
           </div>
         </div>
 

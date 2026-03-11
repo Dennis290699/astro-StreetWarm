@@ -1,20 +1,18 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, EffectFade, Autoplay } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
 
 export default function HeroSwiper() {
   return (
     <section className="max-w-7xl mx-auto px-6 2xl:px-0">
       <Swiper
-        modules={[Pagination, EffectFade, Autoplay]}
-        effect="fade"
+        modules={[Pagination, Autoplay]}
         pagination={{ clickable: true, dynamicBullets: true }}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
-        spaceBetween={0}
+        spaceBetween={50}
         loop={true}
-        className="home-swiper"
+        className="home-swiper overflow-hidden"
       >
         {/* SLIDE 1 */}
         <SwiperSlide>
