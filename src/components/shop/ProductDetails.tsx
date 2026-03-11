@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import { useAppStore } from '../../store/useAppStore';
-import type { Product } from '../../data/products';
+import { PRODUCTS, type Product } from '../../data/products';
 
 export default function ProductDetails({ product }: { product: Product }) {
   const addToCart = useAppStore((state) => state.addToCart);
@@ -41,10 +43,11 @@ export default function ProductDetails({ product }: { product: Product }) {
                 key={idx}
                 onClick={() => setActiveImageIdx(idx)}
                 title={`View image ${idx + 1}`}
-                className={`w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gray-50 border-2 overflow-hidden shrink-0 transition-all ${activeImageIdx === idx ? 'border-[var(--title-color)] scale-105 shadow-md' : 'border-transparent hover:border-gray-200'
-                  }`}
+                className={`flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gray-50 border-2 shrink-0 transition-all ${
+                  activeImageIdx === idx ? 'border-[var(--title-color)] z-10 shadow-md' : 'border-transparent hover:border-gray-200'
+                }`}
               >
-                <img src={img} alt="Thumbnail" className="w-full h-full object-contain p-2" />
+                <img src={img} alt="Thumbnail" className="w-[85%] h-[85%] object-contain" />
               </button>
             ))}
           </div>
@@ -139,6 +142,75 @@ export default function ProductDetails({ product }: { product: Product }) {
           </div>
         </div>
       </div>
+
+      {/* RELATED PRODUCTS */}
+      <div className="mt-24 pt-12 border-t border-gray-100">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-10">
+          <div>
+            <h2 className="text-3xl md:text-4xl text-[var(--title-color)] font-black leading-tight">
+              Related <span className="text-[var(--first-color)]">Products</span>
+            </h2>
+          </div>
+          <a href="/shop" className="hidden md:inline-flex items-center gap-2 text-[var(--title-color)] font-bold hover:text-[var(--first-color)] transition-colors group">
+            Shop All
+            <i className="bx bx-right-arrow-alt text-xl transition-transform group-hover:translate-x-1"></i>
+          </a>
+        </div>
+
+        <div className="relative">
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={1.5}
+            breakpoints={{
+              640: { slidesPerView: 2.5, spaceBetween: 24 },
+              1024: { slidesPerView: 4, spaceBetween: 30 }
+            }}
+            className="pb-10"
+          >
+            {PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 5).map((relatedProduct) => (
+              <SwiperSlide key={relatedProduct.id}>
+                <div className="group bg-white rounded-[2rem] p-6 border border-gray-100 shadow-[0_5px_15px_rgba(0,0,0,0.02)] transition-all duration-300 hover:shadow-xl relative overflow-hidden h-full flex flex-col">
+                  {relatedProduct.tag && (
+                    <span className="absolute top-4 left-4 z-10 bg-[var(--title-color)] text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                      {relatedProduct.tag}
+                    </span>
+                  )}
+                  <a href={`/product/${relatedProduct.id}`} className="block relative h-40 mb-6 flex justify-center items-center">
+                    <div className="absolute inset-0 bg-gray-50 rounded-full scale-0 group-hover:scale-110 transition-transform duration-500 ease-out z-0"></div>
+                    <img src={relatedProduct.image} alt={relatedProduct.name} className="relative z-10 h-full w-auto object-contain transition-transform duration-500 group-hover:scale-110" />
+                  </a>
+                  
+                  <div className="text-left mt-auto">
+                    <a href={`/product/${relatedProduct.id}`} className="block">
+                      <h3 className="text-lg font-bold text-[var(--title-color)] mb-1 group-hover:text-[var(--first-color)] transition-colors line-clamp-1">{relatedProduct.name}</h3>
+                    </a>
+                    <div className="flex items-center justify-between mt-2">
+                       <span className="text-xl font-black text-[var(--first-color)]">${relatedProduct.price}</span>
+                       <button 
+                         onClick={(e) => {
+                           e.preventDefault();
+                           addToCart({
+                             id: relatedProduct.id,
+                             name: relatedProduct.name,
+                             price: relatedProduct.price,
+                             quantity: 1,
+                             image: relatedProduct.image
+                           });
+                         }}
+                         title="Quick Add"
+                         className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-50 text-[var(--title-color)] hover:bg-[var(--title-color)] hover:text-white transition-colors"
+                       >
+                         <i className="bx bx-cart-add text-xl"></i>
+                       </button>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
+
     </div>
   );
 }
