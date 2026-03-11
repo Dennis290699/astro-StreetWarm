@@ -4,12 +4,20 @@ import ShopContent from '../components/shop/ShopContent';
 ---
 
 <Layout title="Shop - StreetWarm">
-  <section className="py-28 max-w-[968px] mx-auto px-6">
-    <h2 className="text-[var(--h1-font-size)] text-center text-[var(--title-color)] font-medium mb-12">Shop Page</h2>
-    <h3 className="text-[var(--h3-font-size)] text-center text-[var(--title-color)] font-medium mb-12">
-      Home <span className="text-[var(--first-color)]">Shop</span>
-    </h3>
+  <main class="main bg-white min-h-screen pt-24 pb-12">
+    <div class="max-w-7xl mx-auto px-6 2xl:px-0 mb-8 text-center md:text-left">
+      <span class="inline-block py-1 px-3 rounded-full bg-orange-50 text-[var(--first-color)] text-sm font-bold tracking-widest uppercase mb-4 shadow-sm">
+        Our Collection
+      </span>
+      <h1 class="text-4xl md:text-5xl text-[var(--title-color)] font-black leading-tight">
+        Shop <span class="text-[var(--first-color)]">Now</span>
+      </h1>
+      <p class="text-gray-500 mt-4 max-w-xl mx-auto md:mx-0">
+        Browse our exclusive and premium streetwear collections. Find everything you need to elevate your everyday style.
+      </p>
+    </div>
 
+    <!-- Client Island -->
     <ShopContent client:load />
-  </section>
+  </main>
 </Layout>

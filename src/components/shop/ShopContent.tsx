@@ -11,6 +11,7 @@ export default function ShopContent() {
   // State
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
+  const [sortOrder, setSortOrder] = useState('newest');
   const [currentPage, setCurrentPage] = useState(1);
 
   // Derive Categories
@@ -18,12 +19,20 @@ export default function ShopContent() {
 
   // Filter & Search Logic
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter((product) => {
+    let result = PRODUCTS.filter((product) => {
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = activeCategory === 'All' || product.category === activeCategory;
       return matchesSearch && matchesCategory;
     });
-  }, [searchTerm, activeCategory]);
+
+    if (sortOrder === 'price-low') {
+      result.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === 'price-high') {
+      result.sort((a, b) => b.price - a.price);
+    }
+    
+    return result;
+  }, [searchTerm, activeCategory, sortOrder]);
 
   // Pagination Logic
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
@@ -70,6 +79,8 @@ export default function ShopContent() {
             {searchTerm && (
               <button 
                 onClick={() => handleSearchChange({ target: { value: '' } } as any)}
+                title="Clear Search"
+                aria-label="Clear Search"
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500"
               >
                 <i className="bx bx-x text-xl"></i>
@@ -92,10 +103,10 @@ export default function ShopContent() {
               <button
                 key={category}
                 onClick={() => handleCategoryClick(category)}
-                className={`relative flex items-center justify-between p-3 rounded-lg text-left font-medium transition-all duration-300 overflow-hidden ${
+                className={`relative flex items-center justify-between p-3 rounded-xl text-left font-medium transition-all duration-300 overflow-hidden border ${
                   activeCategory === category 
-                    ? 'text-white shadow-md' 
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-[var(--title-color)]'
+                    ? 'text-white border-[var(--title-color)] shadow-md' 
+                    : 'text-gray-500 border-transparent hover:bg-gray-50 hover:border-gray-200 hover:text-[var(--title-color)]'
                 }`}
               >
                 {activeCategory === category && (
@@ -109,6 +120,27 @@ export default function ShopContent() {
                 {activeCategory === category && <i className="bx bx-check relative z-10"></i>}
               </button>
             ))}
+          </div>
+        </div>
+        
+        {/* Sort By */}
+        <div className="mb-4">
+          <label className="text-sm font-bold text-[var(--title-color)] uppercase tracking-wider mb-4 block">
+            Sort By
+          </label>
+          <div className="relative">
+            <select 
+              value={sortOrder}
+              onChange={(e) => { setSortOrder(e.target.value); setCurrentPage(1); }}
+              title="Sort By"
+              aria-label="Sort By"
+              className="w-full bg-gray-50 border border-gray-100 text-[var(--title-color)] p-4 rounded-xl outline-none focus:border-[var(--first-color)] focus:bg-white shadow-sm appearance-none cursor-pointer font-medium transition-all"
+            >
+              <option value="newest">Newest Arrivals</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+            </select>
+            <i className="bx bx-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-xl"></i>
           </div>
         </div>
         
@@ -165,7 +197,7 @@ export default function ShopContent() {
 
                     <div className="flex items-center gap-3 mb-6">
                       <span className="text-2xl font-black text-[var(--title-color)]">${product.price}</span>
-                      {product.discount > 0 && (
+                      {product.discount && product.discount > 0 && (
                         <span className="text-sm text-gray-400 line-through font-medium">${product.discount}</span>
                       )}
                     </div>
@@ -191,6 +223,8 @@ export default function ShopContent() {
             <button
               onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
+              title="Previous Page"
+              aria-label="Previous Page"
               className={`w-10 h-10 flex items-center justify-center rounded-xl font-bold transition-colors ${
                 currentPage === 1 ? 'text-gray-300 cursor-not-allowed bg-gray-50' : 'text-[var(--title-color)] bg-white border border-gray-200 hover:bg-[var(--first-color)] hover:text-white hover:border-[var(--first-color)] shadow-sm'
               }`}
@@ -220,6 +254,8 @@ export default function ShopContent() {
             <button
               onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
               disabled={currentPage === totalPages}
+              title="Next Page"
+              aria-label="Next Page"
               className={`w-10 h-10 flex items-center justify-center rounded-xl font-bold transition-colors ${
                 currentPage === totalPages ? 'text-gray-300 cursor-not-allowed bg-gray-50' : 'text-[var(--title-color)] bg-white border border-gray-200 hover:bg-[var(--first-color)] hover:text-white hover:border-[var(--first-color)] shadow-sm'
               }`}

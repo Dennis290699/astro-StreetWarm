@@ -5,7 +5,10 @@ import type { Product } from '../../data/products';
 export default function ProductDetails({ product }: { product: Product }) {
   const addToCart = useAppStore((state) => state.addToCart);
   const [quantity, setQuantity] = useState(1);
-  const [activeImage, setActiveImage] = useState(product.image);
+  const [activeImageIdx, setActiveImageIdx] = useState(0);
+  
+  // Mocking multiple images using the same one for demonstration
+  const images = [product.image, product.image, product.image];
 
   const handleAddToCart = () => {
     addToCart({
@@ -33,13 +36,13 @@ export default function ProductDetails({ product }: { product: Product }) {
         {/* IMAGE GALLERY */}
         <div className="flex flex-col-reverse md:flex-row gap-6">
           <div className="flex md:flex-col gap-4 overflow-x-auto md:overflow-visible custom-scrollbar pb-2 md:pb-0 w-full md:w-24 shrink-0">
-            {/* Mocking multiple images using the same one for demonstration */}
-            {[product.image, product.image, product.image].map((img, idx) => (
+            {images.map((img, idx) => (
               <button 
                 key={idx}
-                onClick={() => setActiveImage(img)}
+                onClick={() => setActiveImageIdx(idx)}
+                title={`View image ${idx + 1}`}
                 className={`w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gray-50 border-2 overflow-hidden shrink-0 transition-all ${
-                  activeImage === img && idx === 0 ? 'border-[var(--title-color)] scale-105 shadow-md' : 'border-transparent hover:border-gray-200'
+                  activeImageIdx === idx ? 'border-[var(--title-color)] scale-105 shadow-md' : 'border-transparent hover:border-gray-200'
                 }`}
               >
                 <img src={img} alt="Thumbnail" className="w-full h-full object-contain p-2" />
@@ -57,7 +60,7 @@ export default function ProductDetails({ product }: { product: Product }) {
               </div>
             )}
             <img 
-              src={activeImage} 
+              src={images[activeImageIdx]} 
               alt={product.name} 
               className="relative z-10 w-full max-w-[400px] object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" 
             />
