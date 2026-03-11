@@ -23,7 +23,7 @@ export default function ProductDetails({ product }: { product: Product }) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 2xl:px-0 pb-12 lg:pb-20">
+    <div className="max-w-7xl mx-auto px-6 2xl:px-0 pb-6 lg:pb-10">
 
       {/* BREADCRUMB */}
       <nav className="flex items-center gap-2 text-sm text-gray-500 font-medium mb-8">
@@ -144,8 +144,8 @@ export default function ProductDetails({ product }: { product: Product }) {
       </div>
 
       {/* RELATED PRODUCTS */}
-      <div className="mt-24 pt-12 border-t border-gray-100">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-10">
+      <div className="mt-16 lg:mt-24 pt-8 lg:pt-12 border-t border-gray-100">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-10">
           <div>
             <h2 className="text-3xl md:text-4xl text-[var(--title-color)] font-black leading-tight">
               Related <span className="text-[var(--first-color)]">Products</span>
@@ -165,11 +165,11 @@ export default function ProductDetails({ product }: { product: Product }) {
               640: { slidesPerView: 2.5, spaceBetween: 24 },
               1024: { slidesPerView: 4, spaceBetween: 30 }
             }}
-            className="pb-10"
+            className="!pb-14 !pt-4 !px-4 -mx-4"
           >
             {PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 5).map((relatedProduct) => (
-              <SwiperSlide key={relatedProduct.id}>
-                <div className="group bg-white rounded-[2rem] p-6 border border-gray-100 shadow-[0_5px_15px_rgba(0,0,0,0.02)] transition-all duration-300 hover:shadow-xl relative overflow-hidden h-full flex flex-col">
+              <SwiperSlide key={relatedProduct.id} className="!h-auto flex">
+                <div className="w-full group bg-white rounded-[2rem] p-6 border border-gray-100 shadow-[0_5px_15px_rgba(0,0,0,0.04)] transition-all duration-300 hover:shadow-[0_15px_30px_rgba(0,0,0,0.08)] relative overflow-hidden h-full flex flex-col hover:-translate-y-1">
                   {relatedProduct.tag && (
                     <span className="absolute top-4 left-4 z-10 bg-[var(--title-color)] text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
                       {relatedProduct.tag}
