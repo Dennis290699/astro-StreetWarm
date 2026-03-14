@@ -46,7 +46,7 @@ export default function Cart() {
             </div>
           ) : (
             cartItems.map((item) => (
-              <article key={item.id} className="flex flex-col sm:flex-row items-center gap-5 p-4 rounded-2xl bg-gray-50 border border-gray-100 transition-all hover:bg-white hover:shadow-lg group">
+              <article key={item.cartItemId} className="flex flex-col sm:flex-row items-center gap-5 p-4 rounded-2xl bg-gray-50 border border-gray-100 transition-all hover:bg-white hover:shadow-lg group">
                 <div className="w-full sm:w-[100px] h-[100px] shrink-0 bg-white rounded-xl p-2 shadow-sm relative overflow-hidden flex items-center justify-center">
                   <img src={item.image} alt={item.name} className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -56,7 +56,7 @@ export default function Cart() {
                     <h3 className="text-[15px] font-bold text-[var(--title-color)] leading-tight clamp-2">{item.name}</h3>
                     <button
                       className="text-gray-400 hover:text-red-500 transition-colors bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-sm shrink-0 ml-2"
-                      onClick={() => removeFromCart(item.id)}
+                      onClick={() => removeFromCart(item.cartItemId!)}
                       title="Remove item"
                     >
                       <i className="bx bx-trash-alt text-lg"></i>
@@ -83,7 +83,7 @@ export default function Cart() {
                     <div className="flex items-center bg-white rounded-full border border-gray-200 shadow-sm overflow-hidden">
                       <button
                         className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-[var(--title-color)] hover:bg-gray-100 transition-colors"
-                        onClick={() => updateQuantity(item.id, -1)}
+                        onClick={() => updateQuantity(item.cartItemId!, -1)}
                         title="Decrease quantity"
                       >
                         <i className="bx bx-minus"></i>
@@ -93,7 +93,7 @@ export default function Cart() {
 
                       <button
                         className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-[var(--title-color)] hover:bg-gray-100 transition-colors"
-                        onClick={() => updateQuantity(item.id, 1)}
+                        onClick={() => updateQuantity(item.cartItemId!, 1)}
                         title="Increase quantity"
                       >
                         <i className="bx bx-plus"></i>

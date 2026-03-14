@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 export interface CartItem {
+  cartItemId?: string;
   id: string;
   name: string;
   price: number;
@@ -53,29 +54,28 @@ export const useAppStore = create<AppState>((set) => ({
   setScrolled: (scrolled) => set({ isScrolled: scrolled }),
 
   addToCart: (item) => set((state) => {
-    const existing = state.cartItems.find(i => 
-      i.id === item.id && i.size === item.size && i.color === item.color
-    );
+    const cartItemId = `${item.id}-${item.size || ''}-${item.color || ''}`;
+    const existing = state.cartItems.find(i => i.cartItemId === cartItemId);
 
     if (existing) {
       return {
         cartItems: state.cartItems.map(i => 
-          (i.id === item.id && i.size === item.size && i.color === item.color) 
+          i.cartItemId === cartItemId
             ? { ...i, quantity: i.quantity + item.quantity } 
             : i
         )
       };
     }
-    return { cartItems: [...state.cartItems, item] };
+    return { cartItems: [...state.cartItems, { ...item, cartItemId }] };
   }),
 
-  removeFromCart: (id) => set((state) => ({
-    cartItems: state.cartItems.filter(item => item.id !== id)
+  removeFromCart: (cartItemId) => set((state) => ({
+    cartItems: state.cartItems.filter(item => item.cartItemId !== cartItemId)
   })),
 
-  updateQuantity: (id, delta) => set((state) => ({
+  updateQuantity: (cartItemId, delta) => set((state) => ({
     cartItems: state.cartItems.map(item => {
-      if (item.id === id) {
+      if (item.cartItemId === cartItemId) {
         const newQty = Math.max(1, item.quantity + delta);
         return { ...item, quantity: newQty };
       }

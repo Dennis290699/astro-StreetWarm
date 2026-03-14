@@ -16,13 +16,13 @@ export default function ProductDetails({ product }: { product: Product }) {
   const images = [product.image, product.image, product.image];
 
   const handleAddToCart = () => {
-    // Si la prenda tiene colores y no escogió uno (aunque por defecto viene el primero)
+    // Si la prenda tiene colores y no escogió uno
     if (product.colors && product.colors.length > 0 && !selectedColor) {
        alert("Please select a color before adding to cart.");
        return;
     }
-    // Si es ropa, sugerir talla (para este demo lo simulo simple)
-    if (product.category === 'Clothing' && !selectedSize) {
+    // Si la prenda tiene tallas
+    if (hasSizes && !selectedSize) {
        alert("Please select a size first.");
        return;
     }
@@ -40,8 +40,12 @@ export default function ProductDetails({ product }: { product: Product }) {
     // Also open the cart slider smoothly using Zustand (if you had an openCart action, you would dispatch it here, otherwise we rely on user manually opening or notification)
   };
 
+  // Assume all products have default sizes unless explicitly empty
+  const availableSizes = product.sizes !== undefined ? product.sizes : ['S', 'M', 'L', 'XL'];
+  const hasSizes = availableSizes && availableSizes.length > 0;
+
   const isColorMissing = product.colors && product.colors.length > 0 && !selectedColor;
-  const isSizeMissing = product.category === 'Clothing' && !selectedSize;
+  const isSizeMissing = hasSizes && !selectedSize;
   const isAddToCartDisabled = isColorMissing || isSizeMissing;
 
   return (
@@ -134,24 +138,26 @@ export default function ProductDetails({ product }: { product: Product }) {
           )}
 
           {/* SIZE SELECTOR */}
-          <div className="mb-10">
-            <h3 className="text-sm font-bold text-[var(--title-color)] uppercase tracking-wider mb-4">Select Size</h3>
-            <div className="flex flex-wrap gap-3">
-              {['S', 'M', 'L', 'XL'].map((size) => (
-                <button
-                  key={size}
-                  onClick={() => setSelectedSize(size)}
-                  className={`w-14 h-14 rounded-full border-2 transition-all flex items-center justify-center font-bold outline-none ${
-                    selectedSize === size
-                      ? 'border-[var(--title-color)] bg-[var(--title-color)] text-white shadow-md'
-                      : 'border-gray-100 text-gray-500 hover:border-[var(--title-color)] hover:text-[var(--title-color)] focus:border-[var(--title-color)] focus:bg-[var(--title-color)]/5 focus:text-[var(--title-color)]'
-                  }`}
-                >
-                  {size}
-                </button>
-              ))}
+          {hasSizes && (
+            <div className="mb-10">
+              <h3 className="text-sm font-bold text-[var(--title-color)] uppercase tracking-wider mb-4">Select Size</h3>
+              <div className="flex flex-wrap gap-3">
+                {availableSizes.map((size: string) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`w-14 h-14 rounded-full border-2 transition-all flex items-center justify-center font-bold outline-none ${
+                      selectedSize === size
+                        ? 'border-[var(--title-color)] bg-[var(--title-color)] text-white shadow-md'
+                        : 'border-gray-100 text-gray-500 hover:border-[var(--title-color)] hover:text-[var(--title-color)] focus:border-[var(--title-color)] focus:bg-[var(--title-color)]/5 focus:text-[var(--title-color)]'
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-6 mt-auto">
             {/* Quantity Selector */}

@@ -7,6 +7,7 @@ export interface Product {
   image: string;
   tag?: 'New' | 'Sale';
   colors?: string[];
+  sizes?: string[];
 }
 
 export const PRODUCTS: Product[] = [
