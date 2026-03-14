@@ -6,8 +6,11 @@ export default function Header() {
     isScrolled, setScrolled, 
     toggleMenu, toggleCart, toggleLogin, 
     isMenuOpen, closeMenu, 
-    isCartOpen, isLoginOpen 
+    isCartOpen, isLoginOpen,
+    cartItems 
   } = useAppStore();
+
+  const totalCartItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,7 +89,13 @@ export default function Header() {
               className="text-2xl cursor-pointer hover:text-[var(--first-color)] transition-colors relative group"
               title="Shopping Cart"
             >
-              <i className="bx bx-shopping-bag"></i>
+              <i className="bx bx-shopping-bag relative">
+                {totalCartItems > 0 && (
+                  <span className="absolute -top-1 -right-2 bg-[var(--first-color)] text-white text-[10px] sm:text-xs font-black w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center rounded-full shadow-sm animate-pulse">
+                    {totalCartItems}
+                  </span>
+                )}
+              </i>
             </button>
             
             <button 

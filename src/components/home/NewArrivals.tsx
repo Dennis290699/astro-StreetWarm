@@ -74,15 +74,15 @@ export default function NewArrivals() {
                   </div>
                 </div>
 
-                {/* Add to Cart Button */}
-                <button 
-                  onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, quantity: 1, image: product.image })}
-                  className="w-full flex items-center justify-center gap-2 bg-gray-50 text-[var(--title-color)] font-bold py-4 rounded-xl transition-all duration-300 group-hover:bg-[var(--first-color)] group-hover:text-white hover:opacity-90"
-                  title="Add to cart"
+                {/* Add to Cart Button (now acts as redirect for variations) */}
+                <a 
+                  href={`/product/${product.id}`}
+                  className="w-full flex items-center justify-center gap-2 bg-gray-50 text-[var(--title-color)] font-bold py-4 rounded-xl transition-all duration-300 group-hover:bg-[var(--title-color)] group-hover:text-white hover:opacity-90"
+                  title="View Options"
                 >
-                  <i className="bx bx-cart-add text-2xl"></i>
-                  Add to Cart
-                </button>
+                  <i className="bx bx-shopping-bag text-2xl"></i>
+                  Select Options
+                </a>
               </div>
             </SwiperSlide>
           ))}

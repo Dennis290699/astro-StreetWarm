@@ -6,6 +6,8 @@ export interface CartItem {
   price: number;
   quantity: number;
   image: string;
+  size?: string;
+  color?: string;
 }
 
 interface AppState {
@@ -51,11 +53,16 @@ export const useAppStore = create<AppState>((set) => ({
   setScrolled: (scrolled) => set({ isScrolled: scrolled }),
 
   addToCart: (item) => set((state) => {
-    const existing = state.cartItems.find(i => i.id === item.id);
+    const existing = state.cartItems.find(i => 
+      i.id === item.id && i.size === item.size && i.color === item.color
+    );
+
     if (existing) {
       return {
         cartItems: state.cartItems.map(i => 
-          i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
+          (i.id === item.id && i.size === item.size && i.color === item.color) 
+            ? { ...i, quantity: i.quantity + item.quantity } 
+            : i
         )
       };
     }

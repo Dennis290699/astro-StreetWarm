@@ -29,14 +29,20 @@ export default function ProductDetails({ product }: { product: Product }) {
 
     addToCart({
       id: product.id,
-      name: `${product.name} ${selectedColor ? `(${selectedColor})` : ''}`,
+      name: product.name,
       price: product.price,
       quantity,
-      image: product.image
+      image: product.image,
+      size: selectedSize || undefined,
+      color: selectedColor || undefined
     });
     
     // Also open the cart slider smoothly using Zustand (if you had an openCart action, you would dispatch it here, otherwise we rely on user manually opening or notification)
   };
+
+  const isColorMissing = product.colors && product.colors.length > 0 && !selectedColor;
+  const isSizeMissing = product.category === 'Clothing' && !selectedSize;
+  const isAddToCartDisabled = isColorMissing || isSizeMissing;
 
   return (
     <div className="max-w-7xl mx-auto px-6 2xl:px-0 pb-6 lg:pb-10">
@@ -170,7 +176,13 @@ export default function ProductDetails({ product }: { product: Product }) {
             {/* Add to Cart Button */}
             <button
               onClick={handleAddToCart}
-              className="flex-1 bg-[var(--title-color)] text-white py-5 px-8 rounded-2xl font-bold text-lg transition-all duration-300 hover:bg-[var(--first-color)] hover:shadow-lg hover:shadow-[var(--first-color)]/30 hover:-translate-y-1 flex items-center justify-center gap-3"
+              disabled={Boolean(isAddToCartDisabled)}
+              className={`flex-1 flex items-center justify-center gap-3 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-[0_8px_20px_rgba(0,0,0,0.1)] hover:-translate-y-1 ${
+                isAddToCartDisabled 
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none hover:-translate-y-0 hover:bg-gray-200' 
+                  : 'bg-[var(--title-color)] text-white hover:bg-[var(--first-color)] hover:shadow-[0_15px_25px_rgba(255,153,0,0.25)]'
+              }`}
+              title={isAddToCartDisabled ? "Please select missing options" : "Add to Cart"}
             >
               <i className="bx bx-cart-add text-2xl"></i>
               Add to Cart

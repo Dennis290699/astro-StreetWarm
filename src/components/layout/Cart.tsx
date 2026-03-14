@@ -52,7 +52,7 @@ export default function Cart() {
                 </div>
 
                 <div className="flex-1 w-full flex flex-col justify-between h-full">
-                  <div className="flex justify-between items-start mb-2">
+                  <div className="flex justify-between items-start mb-1">
                     <h3 className="text-[15px] font-bold text-[var(--title-color)] leading-tight clamp-2">{item.name}</h3>
                     <button
                       className="text-gray-400 hover:text-red-500 transition-colors bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-sm shrink-0 ml-2"
@@ -62,6 +62,20 @@ export default function Cart() {
                       <i className="bx bx-trash-alt text-lg"></i>
                     </button>
                   </div>
+                  
+                  {/* Variants Row */}
+                  {(item.size || item.color) && (
+                    <div className="flex items-center gap-3 text-xs font-semibold text-gray-500 mt-1 mb-2">
+                       {item.size && (
+                         <span className="bg-white border border-gray-200 px-2.5 py-0.5 rounded-md shadow-sm">Size: {item.size}</span>
+                       )}
+                       {item.color && (
+                         <span className="flex items-center gap-1.5 bg-white border border-gray-200 px-2.5 py-0.5 rounded-md shadow-sm">
+                           Color: <span className="w-3 h-3 rounded-full shadow-inner border border-black/10" style={{ backgroundColor: item.color }}></span>
+                         </span>
+                       )}
+                    </div>
+                  )}
                   
                   <div className="flex items-center justify-between mt-auto pt-2">
                     <span className="text-lg font-black text-[var(--first-color)]">${item.price.toFixed(2)}</span>
