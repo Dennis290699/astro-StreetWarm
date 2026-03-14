@@ -216,11 +216,13 @@ export default function ShopContent() {
                   transition={{ duration: 0.3 }}
                   className="relative bg-white pt-8 pb-6 px-6 text-center overflow-hidden group transition-all duration-500 rounded-3xl border border-gray-100 shadow-[0_5px_15px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
                 >
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="bg-[var(--title-color)] text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
-                      {product.tag}
-                    </span>
-                  </div>
+                  {product.tag && (
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className="bg-[var(--title-color)] text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                        {product.tag}
+                      </span>
+                    </div>
+                  )}
                   
                   <a href={`/product/${product.id}`} className="block relative h-48 mb-6 flex justify-center items-center">
                     <div className="absolute inset-0 bg-gray-50 rounded-full scale-0 group-hover:scale-110 transition-transform duration-500 ease-out z-0"></div>

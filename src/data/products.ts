@@ -12,11 +12,9 @@ export interface Product {
 export const PRODUCTS: Product[] = [
   {
     id: 's1',
-    tag: 'New',
     name: 'Cartoon Jacked',
     category: 'Accessory',
     price: 14.99,
-    discount: 29.99,
     image: '/assets/productos/product-1.png',
     colors: ['#D2B48C', '#2C3E50', '#7F8C8D']
   },
@@ -32,11 +30,9 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 's3',
-    tag: 'Sale',
     name: 'Fur Jacked',
     category: 'Accessory',
     price: 5.99,
-    discount: 12.99,
     image: '/assets/productos/product-3.png'
   },
   {
@@ -51,11 +47,9 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 's5',
-    tag: 'New',
-    name: 'Windbreaker Jacked',
+    name: 'Casual Cap',
     category: 'Accessory',
-    price: 7.99,
-    discount: 14.99,
+    price: 3.99,
     image: '/assets/productos/product-5.png'
   },
   {
@@ -68,57 +62,57 @@ export const PRODUCTS: Product[] = [
     image: '/assets/productos/product-6.png'
   },
   // New Arrivals
-  { 
-    id: 'n1', 
-    name: 'Windbreaker Jacked', 
-    category: 'Accessory', 
-    price: 14.99, 
-    discount: 29.99, 
+  {
+    id: 'n1',
+    name: 'Windbreaker Jacked',
+    category: 'Accessory',
+    price: 14.99,
+    discount: 29.99,
     image: '/assets/productos/new-1.png',
     tag: 'New'
   },
-  { 
-    id: 'n2', 
-    name: 'Air Jordan Zipper', 
-    category: 'Accessory', 
-    price: 11.99, 
-    discount: 21.99, 
+  {
+    id: 'n2',
+    name: 'Air Jordan Zipper',
+    category: 'Accessory',
+    price: 11.99,
+    discount: 21.99,
     image: '/assets/productos/new-2.png',
     tag: 'New'
   },
-  { 
-    id: 'n3', 
-    name: 'Fur Jacked', 
-    category: 'Accessory', 
-    price: 4.99, 
-    discount: 9.99, 
+  {
+    id: 'n3',
+    name: 'Fur Jacked',
+    category: 'Accessory',
+    price: 4.99,
+    discount: 9.99,
     image: '/assets/productos/new-3.png',
     tag: 'New'
   },
-  { 
-    id: 'n4', 
-    name: 'Fleece Jacked', 
-    category: 'Accessory', 
-    price: 24.99, 
-    discount: 49.99, 
+  {
+    id: 'n4',
+    name: 'Fleece Jacked',
+    category: 'Accessory',
+    price: 24.99,
+    discount: 49.99,
     image: '/assets/productos/new-4.png',
     tag: 'New'
   },
-  { 
-    id: 'n5', 
-    name: 'Nike Hoodie', 
-    category: 'Accessory', 
-    price: 7.99, 
-    discount: 14.99, 
+  {
+    id: 'n5',
+    name: 'Nike Hoodie',
+    category: 'Accessory',
+    price: 7.99,
+    discount: 14.99,
     image: '/assets/productos/new-5.png',
     tag: 'New'
   },
-  { 
-    id: 'n6', 
-    name: 'Fleece Jacked', 
-    category: 'Accessory', 
-    price: 5.99, 
-    discount: 12.99, 
+  {
+    id: 'n6',
+    name: 'Fleece Jacked',
+    category: 'Accessory',
+    price: 5.99,
+    discount: 12.99,
     image: '/assets/productos/new-6.png',
     tag: 'New'
   },

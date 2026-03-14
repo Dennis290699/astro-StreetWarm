@@ -43,11 +43,13 @@ export default function NewArrivals() {
               <div className="relative bg-white pt-8 pb-6 px-6 text-center overflow-hidden group transition-all duration-500 hover:-translate-y-3 rounded-3xl border border-gray-100 shadow-[0_5px_15px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] flex flex-col h-full">
                 
                 {/* Custom Badge */}
-                <div className="absolute top-4 left-4 z-10">
-                  <span className="bg-[var(--title-color)] text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
-                    New
-                  </span>
-                </div>
+                {product.tag && (
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="bg-[var(--title-color)] text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                      {product.tag}
+                    </span>
+                  </div>
+                )}
                 
                 {/* Product Image */}
                 <a href={`/product/${product.id}`} className="relative h-48 mb-6 flex justify-center items-center block">
@@ -66,7 +68,9 @@ export default function NewArrivals() {
 
                   <div className="flex items-center gap-3 mb-6">
                     <span className="text-2xl font-black text-[var(--title-color)]">${product.price}</span>
-                    <span className="text-sm text-gray-400 line-through font-medium">${product.discount}</span>
+                    {product.discount && product.discount > 0 && (
+                      <span className="text-sm text-gray-400 line-through font-medium">${product.discount}</span>
+                    )}
                   </div>
                 </div>
 
