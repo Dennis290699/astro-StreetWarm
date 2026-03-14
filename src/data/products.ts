@@ -6,6 +6,7 @@ export interface Product {
   discount?: number;
   image: string;
   tag?: 'New' | 'Sale';
+  colors?: string[];
 }
 
 export const PRODUCTS: Product[] = [
@@ -16,7 +17,8 @@ export const PRODUCTS: Product[] = [
     category: 'Accessory',
     price: 14.99,
     discount: 29.99,
-    image: '/assets/productos/product-1.png'
+    image: '/assets/productos/product-1.png',
+    colors: ['#D2B48C', '#2C3E50', '#7F8C8D']
   },
   {
     id: 's2',
@@ -25,7 +27,8 @@ export const PRODUCTS: Product[] = [
     category: 'Accessory',
     price: 11.99,
     discount: 21.99,
-    image: '/assets/productos/product-2.png'
+    image: '/assets/productos/product-2.png',
+    colors: ['#000000', '#34495E']
   },
   {
     id: 's3',
@@ -39,11 +42,12 @@ export const PRODUCTS: Product[] = [
   {
     id: 's4',
     tag: 'New',
-    name: 'Fleece Jacked',
-    category: 'Accessory',
-    price: 7.99,
-    discount: 14.99,
-    image: '/assets/productos/product-4.png'
+    name: 'Printed Tshirt',
+    category: 'Clothing',
+    price: 13.99,
+    discount: 25.99,
+    image: '/assets/productos/product-4.png',
+    colors: ['#FFFFFF', '#E74C3C', '#2980B9']
   },
   {
     id: 's5',

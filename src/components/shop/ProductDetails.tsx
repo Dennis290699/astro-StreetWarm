@@ -6,20 +6,36 @@ import { PRODUCTS, type Product } from '../../data/products';
 
 export default function ProductDetails({ product }: { product: Product }) {
   const addToCart = useAppStore((state) => state.addToCart);
-  const [quantity, setQuantity] = useState(1);
+  
   const [activeImageIdx, setActiveImageIdx] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string | null>(product.colors ? product.colors[0] : null);
 
-  // Mocking multiple images using the same one for demonstration
+  // Fallback to one image if mock doesn't have a gallery
   const images = [product.image, product.image, product.image];
 
   const handleAddToCart = () => {
+    // Si la prenda tiene colores y no escogió uno (aunque por defecto viene el primero)
+    if (product.colors && product.colors.length > 0 && !selectedColor) {
+       alert("Please select a color before adding to cart.");
+       return;
+    }
+    // Si es ropa, sugerir talla (para este demo lo simulo simple)
+    if (product.category === 'Clothing' && !selectedSize) {
+       alert("Please select a size first.");
+       return;
+    }
+
     addToCart({
       id: product.id,
-      name: product.name,
+      name: `${product.name} ${selectedColor ? `(${selectedColor})` : ''}`,
       price: product.price,
-      quantity: quantity,
+      quantity,
       image: product.image
     });
+    
+    // Also open the cart slider smoothly using Zustand (if you had an openCart action, you would dispatch it here, otherwise we rely on user manually opening or notification)
   };
 
   return (
@@ -91,13 +107,39 @@ export default function ProductDetails({ product }: { product: Product }) {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
 
+          {/* COLOR SELECTOR */}
+          {product.colors && product.colors.length > 0 && (
+            <div className="mb-8">
+              <h3 className="text-sm font-bold text-[var(--title-color)] uppercase tracking-wider mb-4">Select Color</h3>
+              <div className="flex gap-4">
+                {product.colors.map((color, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedColor(color)}
+                    className={`w-12 h-12 rounded-full border-[3px] transition-all flex items-center justify-center ${selectedColor === color ? 'border-[var(--title-color)] scale-110 shadow-lg' : 'border-white ring-1 ring-gray-200 hover:scale-105 shadow-sm'}`}
+                    style={{ backgroundColor: color }}
+                    title={`Color ${color}`}
+                  >
+                    {selectedColor === color && <i className="bx bx-check text-white text-2xl drop-shadow-md mix-blend-difference opacity-80"></i>}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* SIZE SELECTOR */}
           <div className="mb-10">
             <h3 className="text-sm font-bold text-[var(--title-color)] uppercase tracking-wider mb-4">Select Size</h3>
             <div className="flex flex-wrap gap-3">
               {['S', 'M', 'L', 'XL'].map((size) => (
                 <button
                   key={size}
-                  className="w-14 h-14 rounded-full border-2 border-gray-100 flex items-center justify-center font-bold text-gray-500 transition-all hover:border-[var(--title-color)] hover:text-[var(--title-color)] focus:border-[var(--title-color)] focus:bg-[var(--title-color)] focus:text-white"
+                  onClick={() => setSelectedSize(size)}
+                  className={`w-14 h-14 rounded-full border-2 transition-all flex items-center justify-center font-bold outline-none ${
+                    selectedSize === size
+                      ? 'border-[var(--title-color)] bg-[var(--title-color)] text-white shadow-md'
+                      : 'border-gray-100 text-gray-500 hover:border-[var(--title-color)] hover:text-[var(--title-color)] focus:border-[var(--title-color)] focus:bg-[var(--title-color)]/5 focus:text-[var(--title-color)]'
+                  }`}
                 >
                   {size}
                 </button>
