@@ -108,44 +108,47 @@ export default function Header() {
 
       {/* MOBILE MENU SIDEBAR */}
       <div
-        className={`fixed top-0 right-0 w-[85%] sm:w-[350px] h-full bg-white text-[var(--title-color)] z-[120] transform transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden flex flex-col justify-center rounded-l-[2rem]
-          ${isMenuOpen ? 'translate-x-0 shadow-[-10px_0_40px_rgba(0,0,0,0.15)]' : 'translate-x-full shadow-none'}
-        `}
+        className={`fixed top-0 right-0 w-[90%] sm:w-[400px] h-full bg-white z-[120] shadow-[-10px_0_30px_rgba(0,0,0,0.1)] transform transition-transform duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden flex flex-col ${
+          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
       >
-        <button
-          className="absolute top-8 right-8 text-4xl text-gray-400 hover:text-red-500 transition-colors"
-          onClick={closeMenu}
-          title="Close menu"
-        >
-          <i className="bx bx-x"></i>
-        </button>
-
-        <div className="px-12 pb-10 border-b border-gray-100 mb-8">
-          <span className="inline-block py-1 px-4 rounded-full bg-orange-50 text-[var(--first-color)] text-xs font-bold tracking-widest uppercase mb-4 w-fit">
-            Navigation
-          </span>
-          <h2 className="text-3xl font-black tracking-widest uppercase text-[var(--title-color)]">Menu</h2>
+        {/* HEADER */}
+        <div className="flex items-center justify-between p-6 sm:p-8 border-b border-gray-100">
+          <h2 className="text-2xl font-black uppercase tracking-widest text-[var(--title-color)] flex items-center gap-3">
+            <i className="bx bx-menu-alt-left text-3xl text-[var(--first-color)]"></i> 
+            Menu
+          </h2>
+          <button
+            className="text-3xl text-gray-400 hover:text-red-500 transition-colors"
+            onClick={closeMenu}
+            title="Close menu"
+          >
+            <i className="bx bx-x"></i>
+          </button>
         </div>
 
-        <ul className="flex flex-col gap-6 px-12 overflow-y-auto custom-scrollbar">
-          {['Home', 'Shop', 'Blog', "Faq's", 'Contact'].map((item, idx) => {
-            const link = item === 'Home' ? '/' : `/${item.toLowerCase().replace("'", '')}`;
-            return (
-              <li key={idx}>
-                <a 
-                  href={link} 
-                  onClick={closeMenu} 
-                  className="text-2xl font-bold text-gray-600 flex items-center justify-between group py-3 border-b border-gray-50 hover:text-[var(--title-color)] transition-colors"
-                >
-                  <span className="group-hover:translate-x-2 transition-transform duration-300">{item}</span>
-                  <i className="bx bx-chevron-right text-[var(--first-color)] opacity-0 -translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"></i>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+        {/* LINKS */}
+        <div className="p-6 sm:p-8 flex-1 overflow-y-auto">
+          <ul className="flex flex-col gap-2">
+            {['Home', 'Shop', 'Blog', "Faq's", 'Contact'].map((item, idx) => {
+              const link = item === 'Home' ? '/' : `/${item.toLowerCase().replace("'", '')}`;
+              return (
+                <li key={idx}>
+                  <a 
+                    href={link} 
+                    onClick={closeMenu} 
+                    className="flex items-center gap-4 text-xl font-bold text-[var(--title-color)] py-4 border-b border-gray-50 hover:text-[var(--first-color)] hover:pl-2 transition-all duration-300"
+                  >
+                    {item}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
         
-        <div className="absolute bottom-10 left-12 right-12 flex justify-start gap-6 text-2xl text-gray-400">
+        {/* FOOTER ICONS */}
+        <div className="p-6 sm:p-8 border-t border-gray-100 flex justify-center gap-8 text-2xl text-gray-400">
            <a href="#" className="hover:text-[var(--first-color)] transition-colors" title="Facebook"><i className='bx bxl-facebook-circle'></i></a>
            <a href="#" className="hover:text-[var(--first-color)] transition-colors" title="Instagram"><i className='bx bxl-instagram-alt'></i></a>
            <a href="#" className="hover:text-[var(--first-color)] transition-colors" title="Twitter"><i className='bx bxl-twitter'></i></a>
